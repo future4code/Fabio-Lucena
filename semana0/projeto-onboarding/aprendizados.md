@@ -1,0 +1,3 @@
+# Aprendizados da semana
+
+Aprendemos sobre muitas **coisas** , dentre elas, como utilizar o **slack** e o **zoom**, sobre a diversidade e a **importância do respeito**, como tirar **dúvidas**, a utilizar o **terminal**, **gitbash**, **Github**, entre outras coisas...
