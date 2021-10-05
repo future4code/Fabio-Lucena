@@ -31,6 +31,14 @@ let resto = (numeroPar%2); // A divisão de um número par por 2 sempre será ze
 console.log(resto); 
 
 //Exercício 3:
+let idade = prompt("Qual é a sua idade?");
+idade = Number(idade);
+
+console.log((idade * 12), "Meses");
+console.log((idade * 365), "dias");
+console.log((idade * 8760), "Horas")
+
+//Exercício 4:
 let primeiroNumero = prompt("Favor inserir um numero!");
 let segundoNumero = prompt("Favor inserir mais um numero!");
 
