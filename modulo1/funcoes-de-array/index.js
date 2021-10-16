@@ -133,17 +133,22 @@ const recebeNomePokemons = pokemons.map(nomePokemon)
 const NomePokemons2 = recebeNomePokemons.sort()
 console.log(NomePokemons2)   
 
-//b) nao consegui fazer a letra b
-// const comparaPokemons = (p1, p2) => {
-    
-//     }
-// const imprimePokemons = (pokemons) => {
-//     return pokemons.tipo
-//     }
+//b)
+const tiposDePokemon = (pokemons) => {
+    return pokemons.tipo
+    }
 
-// const imprimeTipoPokemons = pokemons.filter(comparaPokemons)
-// console.log(imprimeTipoPokemons)
+const tiposSemRepeticao = (parametro1, i) => {
+    return arrayDeTiposDePokemons.indexOf(parametro1) === i
+    }
+const imprimeTipo = (pokemons) => {
+    return pokemons
+    }    
 
-// for (i = 0; i < pokemons.length; i++){
 
-//     }
+
+const arrayDeTiposDePokemons = pokemons.map(tiposDePokemon)
+//console.log(arrayDeTiposDePokemons)
+
+const arrayNovo = arrayDeTiposDePokemons.filter(tiposSemRepeticao).map(imprimeTipo)
+console.log(arrayNovo)
