@@ -38,7 +38,15 @@ function retornaArrayOrdenado(array) {
 
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-  
+    let j = 0
+    let novoArray = []
+    for (let i = 0; i < array.length; i++){
+        if (array[i] % 2 === 0){
+            novoArray[j] = array[i] 
+            j++
+            }   
+        }
+        return novoArray
 }
 
 // EXERCÍCIO 05
