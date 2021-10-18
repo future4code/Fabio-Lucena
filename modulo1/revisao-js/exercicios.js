@@ -51,27 +51,40 @@ function retornaNumerosPares(array) {
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
- 
+    let j = 0
+    let novoArray = []
+    for (let i = 0; i < array.length; i++){
+        if (array[i] % 2 === 0){
+            novoArray[j] = (array[i]  * array[i])
+            j++
+            }   
+        }
+        return novoArray
 }
 
 // EXERCÍCIO 06
 function retornaMaiorNumero(array) {
-  
+    
 }
 
 // EXERCÍCIO 07
 function retornaObjetoEntreDoisNumeros(num1, num2) {
-
+    
+             
+       
+    
+    
 }
 
 // EXERCÍCIO 08
 function retornaNPrimeirosPares(n) {
-   
+    
+    
 }
 
 // EXERCÍCIO 09
 function classificaTriangulo(ladoA, ladoB, ladoC) {
-
+   
 }
 
 // EXERCÍCIO 10
