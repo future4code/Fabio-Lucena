@@ -21,7 +21,19 @@ function retornaArrayInvertido(array) {
 
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
-  
+    let troca
+    
+    for (let i = 1; i < array.length; i++){
+        let j = i
+        troca = array[i]
+
+        while((j > 0) && (array[j-1] > troca)){
+            array[j] = array[j-1]
+            j--
+        }
+        array[j] = troca
+    }
+    return array
 }
 
 // EXERCÍCIO 04
