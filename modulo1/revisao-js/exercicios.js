@@ -182,36 +182,84 @@ function retornaChamadaDeFilme(filme) {
     for(i = 0; i <= filme.atores.length - 1; i++){
         novoArray[i] = " "+filme.atores[i]
     }
-   let mensagem = `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${novoArray}.`
-   return mensagem 
+   let chamada = `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por${novoArray}.`
+   
+   return chamada
 }
 
 // EXERCÍCIO 12
 function retornaPessoaAnonimizada(pessoa) {
-   
+   const pessoaAnonima = {
+        ...pessoa,
+        nome: "ANÔNIMO"
+    }
+    return pessoaAnonima  
 }
 
 // EXERCÍCIO 13A
 function retornaPessoasAutorizadas(pessoas) {
-   
+   function encontraPessoasPerm (pessoas) {
+        return (pessoas.altura >= 1.50 && pessoas.idade > 14 && pessoas.idade < 60)
+          }
+    function imprimePessoas (pessoas) {
+        return pessoas
+          }
+    
+    const pessoasAutorizadas = pessoas.filter(encontraPessoasPerm).map(imprimePessoas)
+    return pessoasAutorizadas
 }
 
 // EXERCÍCIO 13B
 function retornaPessoasNaoAutorizadas(pessoas) {
-  
+   function encontraPessoasSemPerm (pessoas) {
+        return (pessoas.altura < 1.50 || pessoas.idade < 15 || pessoas.idade > 60)
+          }
+    function imprimePessoas (pessoas) {
+        return pessoas
+          }
+    
+    const pessoasAutorizadas = pessoas.filter(encontraPessoasSemPerm).map(imprimePessoas)
+    return pessoasAutorizadas
 }
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
-
+    function calculaSaldo (contas) {    
+        let saldo = contas.saldoTotal
+        let total = contas.compras.reduce(function(soma1, compras){
+              return soma1 + compras
+            }, 0)
+            let conta1 = {...contas,
+            saldoTotal: saldo - total, 
+            compras: []
+          }
+          return conta1
+        }
+        const total = contas.map(calculaSaldo)  
+        
+        
+        return total
 }
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-  
+   function compare(a,b) {
+        if (a.nome < b.nome)
+           return -1;
+        if (a.nome > b.nome)
+          return 1;
+        return 0;
+      }
+    
+    consultas.sort(compare)
+    return consultas
 }
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
-   
+   function arrumaData (a, b){
+        return new Date(a.dataDaConsulta.split("/").reverse()).getTime() - new Date(b.dataDaConsulta.split("/").reverse()).getTime()
+    }        
+    consultas.sort(arrumaData)
+    return consultas
 }
