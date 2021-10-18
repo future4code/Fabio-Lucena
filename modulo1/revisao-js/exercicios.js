@@ -132,7 +132,48 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
-  
+    let max = 0
+    let max2 = 0
+    let max3 = 0
+    let min = array[0]
+    let min2 
+    let novoArray = []
+    for (let i = 0; i <= array.length - 1; i++){
+        if ( array[i] < min){
+          min = array[i]
+        }
+    }
+    max = min
+    for (let i = 0; i <= array.length - 1; i++){
+        if(array[i] > max){
+            max = array[i]
+        }
+    }    
+    max2 = min
+    for (let i = 0; i <= array.length - 1; i++){
+        if((array[i] > min) && (array[i] != max)){
+          min = array[i]
+          max2 = min
+        }
+    
+    }
+    min = max
+  for (let i = 0; i <= array.length - 1; i++){
+      if (array[i] < min){
+        min = array[i]
+      }
+  }
+  min2 = max
+  for (let i = 0; i <= array.length - 1; i++){
+      if ((array[i] < min2) && (array[i] != min)){
+        min2 = array[i]
+      }
+  }    
+    novoArray[0] = max2
+    novoArray[1] = min2
+    return novoArray
+    
+
 }
 
 // EXERCÍCIO 11
