@@ -21,6 +21,10 @@ input {
     width: 500px;
 }
 
+button:hover{
+    background-color: rgb(173, 173, 14);
+}
+
 button:focus {
     color: white;
 }
