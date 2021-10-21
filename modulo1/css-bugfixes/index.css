@@ -39,6 +39,7 @@ img {
 
 div>p:first-child {
     display: block;
+    
 }
 
 div img {
@@ -112,6 +113,8 @@ div:last-child {
 table {
     width: 60%;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
 }
 
 td button {
