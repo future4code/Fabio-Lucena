@@ -34,17 +34,20 @@ button:focus {
 }
 
 img {
-    width: 100px;
+    /* width: 100px; */
 }
 
 div>p:first-child {
     display: block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
     
 }
 
 div img {
     background: rgb(255, 255, 255);
-    width: 20%;
+    width: 15%;
+    height: 15%;    
 }
 
 .botao-amarelo {
@@ -81,21 +84,29 @@ div img {
     background-color: #2274a5;
     color: white;
     padding-top: 75px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
 
 }
 
 #container-de-descricao>ol {
     padding: 15px 0px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
 }
 
 #container-para-comprar {
     background-color: #e7eb90;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
 }
 
 #container-para-comprar>p {
     color: #c44f00;
     padding: 100px 0;
     font-size: 60px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
 }
 
 
@@ -111,10 +122,13 @@ div:last-child {
 }
 
 table {
-    width: 60%;
+    width: 70%;
     text-align: center;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
+    margin:auto;  
+    border-collapse: collapse;
+    table-layout: fixed;
 }
 
 td button {
@@ -140,6 +154,9 @@ td button {
     border-radius: 5px;
     font-size: 10px;
     color: black;
+    position: absolute;
+    top: 500px;
+    left: 900px;
 }
 
 #back-button:hover {
@@ -152,3 +169,5 @@ td button {
     border-left: white;
     border-right: white;
 }
+
+
