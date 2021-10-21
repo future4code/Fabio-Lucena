@@ -173,4 +173,12 @@ td button {
     border-right: white;
 }
 
+#icone-busca:hover {
+    opacity: 0.5;
+}
+
+#icone-busca:active{
+    opacity: 1;
+}
+
 
