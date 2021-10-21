@@ -25,6 +25,10 @@ button:hover{
     background-color: rgb(173, 173, 14);
 }
 
+button:active{
+    color: white;
+}
+
 button:focus {
     color: white;
 }
@@ -121,6 +125,7 @@ td button {
 .container-do-search {
     margin-top: 20px;
     height: 100px;
+    
 }
 
 
@@ -136,4 +141,11 @@ td button {
 
 #back-button:hover {
     background-color: #635a3d
+}
+
+#caixa-de-pesquisa {
+    border-bottom: solid black;
+    border-top: white;
+    border-left: white;
+    border-right: white;
 }
