@@ -1,0 +1,164 @@
+/*Modificações Gerais */
+
+header {
+    position: fixed;
+    width: 100%; 
+    background-color: (224, 223, 208) ; 
+    
+}
+
+h2 {
+    padding-top: 100px;
+}
+
+body {
+    background-color: rgb(224, 223, 208);
+}
+
+a:visited{
+    color:rgb(91, 133, 173);
+}
+
+a {
+    color:rgb(91, 133, 173);
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* Cabeçalho geral */
+
+.cabecalho {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: (91, 133, 173);
+    
+}
+
+.cabecalho-de-links {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: whitesmoke;
+    margin-left: 1400px;
+    padding-left: 20px;
+    position: fixed;
+    top: 50px;
+}
+
+.links {
+    padding-left: 30px;
+}
+
+/*Home*/
+#titulo-home {
+    text-align: center;      
+    color: rgb(91, 133, 173);
+    padding-top: 90px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+#texto-da-home {
+    text-align: center;      
+    color: rgb(18, 19, 20);
+    padding-top: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+div.box {
+    padding-top: 150px;    
+    display: inline-block;
+    margin-left: 70px;
+    
+}
+
+#fonte-img{
+    font-size: 10px;
+    margin-left: 50px;
+}
+
+/*Sobre-mim*/
+.descricao {
+    text-align: left;      
+    color: rgb(18, 19, 20);
+    padding-top: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+#texto-sobre-mim {
+    text-align: left;
+    padding-left: 550px;      
+    color: rgb(18, 19, 20);
+    margin-top: -190px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+#foto {
+    width: 10%;
+    padding-left: 300px;
+    
+}
+
+/*Trabalhos*/
+.trabalho-cab {
+    color: rgb(18, 19, 20);
+    padding-top: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+#js-img {
+    width: 70%;
+    display: block;
+    margin: auto;
+    padding-bottom: 70px;
+}
+
+#js1-img {
+    width: 10%;
+    display: inline-block;
+    margin-left: 100px;
+    padding-bottom: 10px;
+}
+
+/*Social*/
+div.box2 {
+    padding-top: 150px;    
+    display: inline-block;
+    margin-left: 80px;
+    
+}
+
+#forms {
+    color: rgb(18, 19, 20);    
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 1.5;    
+    margin-left: 800px;
+}
+
+#botao{
+    position: absolute;
+    top: 1300px;
+    left: 930px;
+    font: bold 12px/24px arial, helvetica;
+    color: rgb(8, 11, 14);
+    background-color: rgb(162, 162, 167);
+}

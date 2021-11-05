@@ -1,0 +1,184 @@
+/** 
+  *
+  *  ESTILOS GERAIS 
+  *
+  **/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    background-color: #fe7e02;
+    padding: 10px 5px 10px 5px;
+    color: white;
+    text-align: center;
+}
+
+input {
+    height: 20px;
+    width: 500px;
+}
+
+button:hover{
+    background-color: rgb(173, 173, 14);
+}
+
+button:active{
+    color: white;
+}
+
+button:focus {
+    color: white;
+}
+
+img {
+    width: 100px;
+}
+
+div>p:first-child {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    
+}
+
+div img {
+    background: rgb(255, 255, 255);
+    width: 15%;
+    height: 15%;    
+}
+
+.botao-amarelo {
+    background-color: #ffaf43;
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
+}
+
+.botao-amarelo:hover {
+    background-color: #c44f00;
+}
+
+.container {
+    height: 500px;
+    text-align: center;
+}
+
+.icone {
+    height: 15px;
+    width: 15px;
+}
+
+
+/** 
+  *
+  *  ESTILOS HOME 
+  *
+  **/
+
+#container-de-descricao {
+    background-color: #2274a5;
+    color: white;
+    padding-top: 75px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+
+}
+
+#container-de-descricao>ol {
+    padding: 15px 0px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+#container-para-comprar {
+    background-color: #e7eb90;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+#container-para-comprar>p {
+    color: #c44f00;
+    padding: 100px 0;
+    font-size: 60px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+li {
+    list-style-position: inside;
+  }
+
+/**
+  *
+  *  ESTILOS COMPRAR 
+  *
+  **/
+
+div:nth-child(2),
+div:last-child {
+    text-align: center;
+}
+
+table {
+    width: 70%;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    margin:auto;  
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+td button {
+    background-color: #fadf63;
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    color: black;
+}
+
+.container-do-search {
+    margin-top: 20px;
+    height: 100px;
+    
+}
+
+
+#back-button {
+    background-color: white;
+    width: 100px;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 10px;
+    color: black;
+    position: absolute;
+    top: 500px;
+    left: 900px;
+}
+
+#back-button:hover {
+    background-color: #635a3d
+}
+
+#caixa-de-pesquisa {
+    border-bottom: solid black;
+    border-top: white;
+    border-left: white;
+    border-right: white;
+}
+
+#icone-busca:hover {
+    opacity: 0.5;
+}
+
+#icone-busca:active{
+    opacity: 1;
+}
+
+
