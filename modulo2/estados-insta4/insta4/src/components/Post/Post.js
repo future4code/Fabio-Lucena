@@ -39,7 +39,8 @@ const UserPhoto = styled.img`
 `
 
 const PostPhoto = styled.img`
-  width: 100%;
+heigth: 225px;
+width: 300px;
 `
 
 class Post extends React.Component {
