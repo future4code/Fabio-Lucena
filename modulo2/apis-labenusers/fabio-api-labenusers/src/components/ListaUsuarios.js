@@ -23,34 +23,14 @@ const BotaoDelete1 = styled.span`
 export class ListaUsuarios extends React.Component {
 
 
-    // renderizaLista = (user) => {
-    //     return <li key={user.id}>
-    //     {user.name}
-    //     <BotaoDelete onClick={this.props.deleteUser(user.id)}>
-    //         X
-    //     </BotaoDelete>
-    // </li>
-    // }
-
     render() {
 
-        // const usuarios = this.props.listaUsuarios.map((usuarios) => {
-        //     return <li key={usuarios.id}>
-        //         {usuarios.name}  {usuarios.id}
-        //         <button onClick={this.props.deleteUser(usuarios.id)}>X</button> 
-        //         </li> 
-            
-        // });
-
-        // {usuarios.id}
-
         const usuarios = this.props.listaUsuarios.map((usuario) => {
-            return  <BotaoDelete 
-            name={usuario.name}
-            id={usuario.id}
-            deleteUser={this.props.deleteUser}
+            return <BotaoDelete
+                name={usuario.name}
+                id={usuario.id}
+                deleteUser={this.props.deleteUser}
             />
-            {/* <li key={usuario.id}>{usuario.name}  </li> */}
         });
 
         return (
@@ -58,19 +38,8 @@ export class ListaUsuarios extends React.Component {
                 <button onClick={this.props.onTrocaValor}>Inserir Novo Usuario</button>
                 <ListaContainer>
 
-                <h2>Usuários Cadastrados:</h2>
-                    
-                    <ul>
-                        
-                        
-
-                        {usuarios}
-
-                    </ul>
-
-
-
-
+                    <h2>Usuários Cadastrados:</h2>
+                    {usuarios}
                 </ListaContainer>
 
             </div>

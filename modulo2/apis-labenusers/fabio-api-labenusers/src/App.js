@@ -33,7 +33,7 @@ export class App extends React.Component {
       console.log(cont)
       return <ListaUsuarios
         onTrocaValor={this.onTrocaValor}
-        usuarios={this.usuarios}
+        // usuarios={this.usuarios}
         listaUsuarios={this.state.listaUsuarios}
         deleteUser={this.deleteUser}
 
@@ -71,10 +71,9 @@ export class App extends React.Component {
       )
       .then((resposta) => {
         this.setState({ listaUsuarios: resposta.data});
-        console.log(resposta.data.result.list);
       })
       .catch((erro) => {
-        // console.log(erro.response.data);
+        alert("Erro ao carregar a lista de usuários")
       });
   };
 
@@ -96,10 +95,11 @@ export class App extends React.Component {
       .then((resposta) => {
         this.setState({ inputNome: '' })
         this.setState({ inputEmail: '' })
+        alert("Usuário adicionado com sucesso")
         this.getAllUsers()
       })
       .catch((erro) => {
-        // console.log(erro.response.data);
+        alert("erro ao adicionar usuário")
       });
   };
 
@@ -107,21 +107,23 @@ export class App extends React.Component {
     console.log(id)
     axios
       .delete(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/:${id}`,
+        `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`,
         {
           headers: {
             Authorization: "fabio-lucena-carver"
+          },
+          data: {
+            source: id
           }
         }
+        
       )
-
-
       .then((resposta) => {
-        this.setState({ listaUsuarios: resposta.data});
-        console.log(resposta.data.result.list);
+        alert("Usuario excluído")
+        this.getAllUsers()
       })
       .catch((erro) => {
-        // console.log(erro.response.data);
+        alert("Erro ao excluir usuário")
       });
   }
 
