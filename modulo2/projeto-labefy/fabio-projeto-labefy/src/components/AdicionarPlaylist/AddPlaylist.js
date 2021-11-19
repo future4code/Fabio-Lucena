@@ -20,7 +20,7 @@ export class AddPlaylist extends React.Component {
     
     return (
        <div>
-       {/* <button onClick={this.props.onTrocaValor}>Lista de Usuarios</button> */}
+       
        <AddContainer>
             <InputContainer>
                 <p>Nome:</p>
@@ -32,7 +32,7 @@ export class AddPlaylist extends React.Component {
             </InputContainer>
 
 
-            {/* onClick={this.props.alteraValor} */}
+            
 
         </AddContainer>
 

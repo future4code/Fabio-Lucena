@@ -22,6 +22,8 @@ export class CardPlaylist extends React.Component {
     funcaoAux3 = (id) => {
         this.props.onTrocaValor()
         this.props.getPlaylistTracks(id)
+        this.props.pegaNomeDaLista(this.props.name)
+        this.props.idDaLista(id)
     }
 
     render() {

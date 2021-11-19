@@ -4,7 +4,12 @@ import ListaPlaylist from './components/ListaPlaylists/ListaPlaylist'
 import styled from 'styled-components';
 import axios from 'axios';
 import MusicaPlaylist from './components/MusicasPlaylist/MusicaPlaylist';
+import GlobalStyle from './GlobalStyles';
+import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
 
+const AppContainer = styled.div`
+  
+`;
 
 export class App extends React.Component {
   state = {
@@ -12,7 +17,10 @@ export class App extends React.Component {
     listaPlaylists: [],
     listaDeMusicas: [],
     inputNome: '',
-    inputId: ''
+    inputArtista: '', 
+    inputLink: '',
+    inputId: '',
+    inputNomeMusica: ''
   }
 
 
@@ -30,13 +38,24 @@ export class App extends React.Component {
         createPlaylist={this.createPlaylist}
         deletePlaylist={this.deletePlaylist}
         getPlaylistTracks={this.getPlaylistTracks}
+        pegaNomeDaLista={this.pegaNomeDaLista}
+        idDaLista={this.idDaLista}
       />
     } else if (cont === true) {
       console.log(cont)
       return <MusicaPlaylist
-        
-
-
+        listaDeMusicas={this.state.listaDeMusicas}
+        nomeDaLista={this.nomeDaLista}
+        idLista={this.idLista}
+        addTrackToPlaylist={this.addTrackToPlaylist}
+        onTrocaValor={this.onTrocaValor}
+        onAtualizaArtista={this.onAtualizaArtista}
+        onAtualizaNomeMusica={this.onAtualizaNomeMusica}
+        onAtualizaLink={this.onAtualizaLink}
+        inputNome={this.state.inputNome}
+        inputArtista={this.state.inputArtista}
+        inputLink={this.state.inputLink}
+        inputNomeMusica={this.state.inputNomeMusica}
       />
     }
   }
@@ -50,8 +69,16 @@ export class App extends React.Component {
     this.setState({ inputNome: event.target.value })
   }
 
-  onAtualizaEmail = (event) => {
-    this.setState({ inputEmail: event.target.value })
+  onAtualizaArtista = (event) => {
+    this.setState({ inputArtista: event.target.value })
+  }
+
+  onAtualizaNomeMusica = (event) => {
+    this.setState({ inputNomeMusica: event.target.value })
+  }
+
+  onAtualizaLink = (event) => {
+    this.setState({ inputLink: event.target.value })
   }
 
   componentDidMount() {
@@ -59,20 +86,20 @@ export class App extends React.Component {
   }
 
   getAllPlaylists = async () => {
-    try{
-    const resposta = await axios
-      .get(
-        "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
-        {
-          headers: {
-            Authorization: "fabio-lucena-carver"
+    try {
+      const resposta = await axios
+        .get(
+          "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+          {
+            headers: {
+              Authorization: "fabio-lucena-carver"
+            }
           }
-        }
-      )
-        this.setState({ listaPlaylists: resposta.data.result.list});
-      } catch (erro) {
-        alert("Erro ao carregar a lista de Playlists")
-      };
+        )
+      this.setState({ listaPlaylists: resposta.data.result.list });
+    } catch (erro) {
+      alert("Erro ao carregar a lista de Playlists")
+    };
   };
 
   createPlaylist = () => {
@@ -95,9 +122,9 @@ export class App extends React.Component {
         this.getAllPlaylists()
       })
       .catch((err) => {
-        
+
         alert("erro ao adicionar a playlist")
-        
+
       });
   };
 
@@ -114,22 +141,65 @@ export class App extends React.Component {
             source: id
           }
         }
-        
+
       )
       .then((resposta) => {
         alert("Playlist excluída")
         this.getAllPlaylists()
       })
       .catch((erro) => {
-        // alert("Erro ao excluir usuário")
+        
       });
   }
 
+
+  nomeDaLista = ""
+  idLista = ""
+
+  pegaNomeDaLista = (nome) => {
+    this.nomeDaLista = nome
+    console.log(this.nomeDaLista)
+    return this.nomeDaLista
+  }
+
+  idDaLista = (id) => {
+    this.idLista = id
+    console.log(id)
+    return this.idLista
+  }
+
   getPlaylistTracks = async (id) => {
-    try{
-    const resposta = await axios
-      .get(
+    const playlistId = id
+    try {
+      const resposta = await axios
+        .get(
+          `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`,
+          {
+            headers: {
+              Authorization: "fabio-lucena-carver"
+            },
+            data: {
+              source: id
+            }
+          }
+        )
+      this.setState({ listaDeMusicas: resposta.data.result.tracks });
+      console.log(this.state.listaDeMusicas)
+    } catch (erro) {
+      alert("Erro ao carregar as musicas da Playlist")
+    };
+  };
+
+  addTrackToPlaylist = (id) => {
+    const body = {
+      name: this.state.inputNomeMusica,
+      artist: this.state.inputArtista,
+      url: this.state.inputLink
+    };
+    axios
+      .post(
         `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`,
+        body,
         {
           headers: {
             Authorization: "fabio-lucena-carver"
@@ -139,11 +209,18 @@ export class App extends React.Component {
           }
         }
       )
-        this.setState({ listaDeMusicas: resposta.data.result.tracks});
-        console.log(this.state.listaDeMusicas)
-      } catch (erro) {
-        alert("Erro ao carregar a lista de Playlists")
-      };
+      .then((resposta) => {
+        this.setState({ inputNomeArtista: '' })
+        this.setState({ inputNomeMusica: '' })
+        this.setState({ inputLink: '' })
+        alert("Música adicionada com sucesso")
+        this.getPlaylistTracks(id)
+      })
+      .catch((err) => {
+
+        alert("erro ao adicionar a música")
+
+      });
   };
 
 
@@ -155,15 +232,12 @@ export class App extends React.Component {
 
 
     return (
-      <div>
+      
+      <AppContainer>
 
         {this.renderizaNaTela(this.state.cont)}
 
-
-
-
-
-      </div>
+      </AppContainer> 
     );
   }
 }

@@ -55,15 +55,20 @@ export class ListaPlaylist extends React.Component {
                 deletePlaylist={this.props.deletePlaylist}
                 onTrocaValor={this.props.onTrocaValor}
                 getPlaylistTracks={this.props.getPlaylistTracks}
+                pegaNomeDaLista={this.props.pegaNomeDaLista}
+                idDaLista={this.props.idDaLista}
             />
         });
 
         return (
             <div>
-                {/* <button onClick={this.props.onTrocaValor}>Inserir Novo Usuario</button> */}
+                
                 <ListaContainer>
 
                     <h2>Playlists:</h2>
+
+                    <p>Clique em uma Playlist!</p>
+
                     <LinhasContainer>
                         {usuarios}
                     </LinhasContainer>
