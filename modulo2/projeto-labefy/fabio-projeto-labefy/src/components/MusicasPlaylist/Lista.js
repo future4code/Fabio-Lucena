@@ -17,15 +17,13 @@ padding: 10px;
 
 export class Lista extends React.Component {
 
-    funcaoAux2 = () => {
 
-    }
 
     render() {
-        const linkVideo = this.props.url
+
         return (
             <div>
-                
+
                 <AddContainer>
 
 
@@ -34,9 +32,11 @@ export class Lista extends React.Component {
 
                         <p>Artista: <b>{this.props.artista}</b></p>
                         <p>Nome da Música: <b>{this.props.nome}</b></p>
-                        <iframe src={this.props.url} width="100%" height="80" frameBorder="0"></iframe>
-                        
-                        
+                        <audio controls="controls">
+                            <source src={this.props.url} preload="preload" type="audio/mp3" />
+                            seu navegador não suporta HTML5
+                        </audio>
+
                     </InputContainer>
                 </AddContainer>
 
