@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  margin: 0;
+  background-color: rgb(236, 232, 225);
+  border: 1px solid black;
+  border-radius: 5%;
 }
 
 .App-logo {
@@ -35,4 +39,27 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.FooterBanininha {
+  padding: 10px;
+}
+
+.App-Header {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-top: 1vh;
+  margin-left: 1vh;
+  justify-items: start;
+  align-items: center
+}
+
+.App-Titulo {
+  padding-left: 1vh;
+}
+
+.BotaoPagina {
+  width: 5vh;
+  height: 5vh;
+  cursor: pointer;
 }

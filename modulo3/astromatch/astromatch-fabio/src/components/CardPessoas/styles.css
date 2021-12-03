@@ -1,0 +1,28 @@
+.CardPessoas-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 75vh;
+    width: 65vh;
+    flex-shrink: 100%;
+    padding: 10px;
+}
+
+.FotoPerfil {
+    padding-top: 5px;
+    height: 35vh;
+    width: 30vh;
+}
+
+.BotaoMatch {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.ImagemMatch {
+    height: 7vh;
+    width: 7vh;
+}

@@ -13,25 +13,25 @@ function App() {
 
   const renderizaNaTela = (cont) => {
     if (cont === false) {
-      return(
-      <div>
-        <button onClick={alteraTela}>matches</button>
-        <CardPessoas
-          getProfile={getProfile}
-          profile={profile}
-          aluno={aluno}
-          disMatch={disMatch}
-          choosePerson={choosePerson}
-        />
-      </div>
+      return (
+        <div>
+          <CardPessoas
+            getProfile={getProfile}
+            profile={profile}
+            aluno={aluno}
+            disMatch={disMatch}
+            choosePerson={choosePerson}
+            alteraTela={alteraTela}
+          />
+        </div>
       )
     } else if (cont === true) {
       return (
         <div>
-          <button onClick={alteraTela}>Pessoas</button>
           <MatchCard
-          matches={matches}
-          getMatches={getMatches}
+            matches={matches}
+            getMatches={getMatches}
+            Clear={Clear}
           />
         </div>
       )
@@ -59,6 +59,14 @@ function App() {
 
   const alteraTela = () => {
     setCont(!cont)
+  }
+
+  const botaoTela = () => {
+    if (cont === false) {
+      return (<img className="BotaoPagina" src="https://cdn-icons.flaticon.com/png/512/3856/premium/3856668.png?token=exp=1638557808~hmac=47efb270e12fb40e79e23e39b7a5d056" onClick={alteraTela} />)
+    } else if (cont === true) {
+      return (<img className="BotaoPagina" src="https://cdn-icons.flaticon.com/png/512/2581/premium/2581577.png?token=exp=1638558542~hmac=c0a812f30311011c01a0952258109b26" onClick={alteraTela} />)
+    }
   }
 
 
@@ -103,13 +111,37 @@ function App() {
     }
   }
 
+  const Clear = async () =>{
+    try {
+      const response = await axios.put(url + aluno + `/clear`,
+        {
+          headers: {
+            ContentType: "application/json"
+          }
+        }
+      )
+      console.log(response.data)
+      getMatches()
+      
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  
+
 
 
   return (
     <div className="App">
 
+      <header className="App-Header">
+        {botaoTela()}
+        <h1 className="App-Titulo">AstroMatch</h1>
+      </header>
 
       {renderizaNaTela(cont)}
+
+      <footer className="FooterBanininha">Banininha Group</footer>
 
     </div>
   );
