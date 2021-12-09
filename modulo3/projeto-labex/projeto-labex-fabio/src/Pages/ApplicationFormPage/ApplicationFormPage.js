@@ -1,41 +1,38 @@
 import React, { useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer"
-import ContainerPrincipal from "../../components/DivBody.js"
+import { countries3 } from "./Countries"
 import { FormCards, ContainerForms, Container, Select, Input } from "./styled";
-import styled from "styled-components";
-// import useForms from "../components/CustomHooks/useForms";
+import useForm from "../../components/CustomHooks/useForm";
 import { URL_BASE } from "../../components/UrlBase";
 import { useNavigate } from "react-router-dom"
-import { useRequestData } from "../../components/CustomHooks/Requisicoes";
+import { useRequestData } from "../../components/CustomHooks/UseRequestData";
+import { ApplyToTrip } from "../../components/Requests";
 //useHistory foi substituido por useNavigate no router 6
 
 export default function ApplicationFormPage() {
   const [tripsList] = useRequestData(`${URL_BASE}/trips`, {})
   const [id, setId] = useState("")
-  // const {form, onChange, clear} = useForms({ name: "", age: "", applicationText: "", profession: "", country: "" })
   const navigate = useNavigate()
-  const [forms, setForm] = useState({ name: "", age: "", applicationText: "", profession: "", country: "" })
+  const {form, changeValues, clear} = useForm({ name: "", age: "", applicationText: "", profession: "", country: "" })
 
-  console.log(forms)
-  const onChangeValues = (event) => {
-    const { name, value } = event.target
-    setForm({ ...forms, [name]: value })
+  const GoToListTripsPage = () => {
+    navigate("/trips/list")
   }
 
-
-
-  const onClickSend = () => {
-    console.log(tripsOptions)
+  const sendForm = (event) => {
+    event.preventDefault()
+    ApplyToTrip(URL_BASE, form, id)
+    setId("")
+    clear()
   }
 
-  const onChangeTrip = (e) => {
-    setId(e.target.value)
+  const chooseTrip = (event) => {
+    setId(event.target.value)
   }
-
 
   const tripsOptions = tripsList && tripsList.map((trip) => {
-    return <option key={trip.id}>{trip.name}</option>
+    return <option key={trip.id} value={trip.id}>{trip.name}</option>
   })
 
   return (
@@ -46,71 +43,66 @@ export default function ApplicationFormPage() {
       <ContainerForms>
 
         <h1>Inscreva-se para uma viagem</h1>
-        <FormCards onSubmit={onClickSend}>
-          
-            <Select defaultValue="" onChange={onChangeTrip}>
-              <option value="" disabled>Escolha uma Viagem</option>
-              {tripsOptions}
-            </Select>
-            <Input
-              placeholder={"Nome"}
-              name={"name"}
-              value={forms.name}
-              onChange={onChangeValues}
-              required
-            />
-            <Input
-              placeholder={"Idade"}
-              type={"number"}
-              name={"age"}
-              value={forms.age}
-              onChange={onChangeValues}
-              required
-              min={18}
-            />
-            <Input
-              placeholder={"Texto de Candidatura"}
-              name={"applicationText"}
-              value={forms.applicationText}
-              onChange={onChangeValues}
-              required
-            />
-            <Input
-              placeholder={"Profissão"}
-              name={"profession"}
-              value={forms.profession}
-              onChange={onChangeValues}
-              required
-            />
-            {/* <select
+        <FormCards onSubmit={sendForm}>
+
+          <Select defaultValue="" onChange={chooseTrip}>
+            <option value="" disabled>Escolha uma Viagem</option>
+            {tripsOptions}
+          </Select>
+          <Input
+            placeholder={"Nome"}
+            name={"name"}
+            value={form.name}
+            onChange={changeValues}
+            required
+          />
+          <Input
+            placeholder={"Idade"}
+            type={"number"}
+            name={"age"}
+            value={form.age}
+            onChange={changeValues}
+            required
+            min={18}
+          />
+          <Input
+            placeholder={"Texto de Candidatura"}
+            name={"applicationText"}
+            value={form.applicationText}
+            onChange={changeValues}
+            required
+          />
+          <Input
+            placeholder={"Profissão"}
+            name={"profession"}
+            value={form.profession}
+            onChange={changeValues}
+            required
+          />
+          <Select
+            defaultValue=""
             placeholder={"País"}
             name={"country"}
-            value={forms.country}
-            onChange={onChangeValues}
+            value={form.country}
+            onChange={changeValues}
             required
           >
             <option value={""} disabled>Escolha um País</option>
-            {countries.map((country) => {
+            {countries3.map((country) => {
               return <option value={country} key={country}>{country}</option>
             })}
-          </select> */}
-            {/* <ButtonsContainer>
-            <button onClick={() => goToListTripsPage(history)}>Voltar</button>
+          </Select>
+          <div>
+            <button onClick={() => navigate(-1)}>Voltar</button>
             <button type={"submit"}>Enviar</button>
-          </ButtonsContainer>*/}
-          
+          </div>
+
         </FormCards>
 
 
-        {/* <input placeholder={"Viagem"} />
-        <input placeholder={"Viagem"} />
-        <input placeholder={"Viagem"} />
-        <input placeholder={"Viagem"} />
-        <input placeholder={"Viagem"} /> */}
 
-        {/* <p>Lista de Viagens</p> */}
-        <button onClick={() => navigate(-1)}>voltar</button>
-        {/* <button onClick={}>Formulario de Viagens</button>  */}
+        <button onClick={() => GoToListTripsPage}>voltar</button>
+
 
       </ContainerForms>
 

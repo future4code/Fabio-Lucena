@@ -1,10 +1,10 @@
 import React from "react";
 import HomePage from "../Pages/HomePage"
-import AdminHomePage from "../Pages/AdminHomePage"
+import AdminHomePage from "../Pages/AdminHomePage/AdminHomePage"
 import ApplicattionFormPage from "../Pages/ApplicationFormPage/ApplicationFormPage"
 import ListTripsPage from "../Pages/ListTripsPage"
-import LoginPage from "../Pages/LoginPage"
-import TripDetailsPage from "../Pages/TripDetailsPage"
+import LoginPage from "../Pages/LoginPage/LoginPage"
+import TripDetailsPage from "../Pages/TripDetailsPage/TripDetailsPage"
 import CreateTripPage from "../Pages/CreateTripPage"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 //Switch foi substituido por Routes

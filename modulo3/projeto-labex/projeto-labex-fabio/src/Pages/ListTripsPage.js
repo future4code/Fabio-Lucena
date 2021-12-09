@@ -6,7 +6,7 @@ import styled from "styled-components";
 import ListCards from "../components/ListCards";
 import { useNavigate } from "react-router-dom"
 import { URL_BASE } from "../components/UrlBase";
-import { useRequestData } from "../components/CustomHooks/Requisicoes";
+import { useRequestData } from "../components/CustomHooks/UseRequestData";
 //useHistory foi substituido por useNavigate no router 6
 
 const Container = styled.div`
