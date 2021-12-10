@@ -5,12 +5,12 @@ import { ContainerPrincipal, FormCards, ContainerForms, Container, Select, Input
 import { Login } from "../../components/Requests"
 import useForm from "../../components/CustomHooks/useForm"
 import { useNavigate } from "react-router-dom"
-import useUnprotectedPage from "../../components/CustomHooks/useUnprotectedPage";
+import UseUnprotectedPage from "../../components/CustomHooks/UseUnprotectedPage";
 
 //useHistory foi substituido por useNavigate no router 6
 
 export default function LoginPage() {
-  useUnprotectedPage()
+  UseUnprotectedPage()
   const navigate = useNavigate()
   const { form, changeValues } = useForm({ email: "", password: "" })
 

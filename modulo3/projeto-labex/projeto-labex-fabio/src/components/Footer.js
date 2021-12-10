@@ -7,6 +7,7 @@ const FooterPrincipal = styled.footer`
   flex-grow: 0;
   display: flex;
   justify-content: center;
+  background-color: #3f3f42;
  `
 
 
@@ -14,7 +15,7 @@ function Footer() {
     return (
         <FooterPrincipal>
 
-            <p>Banininha Group</p>
+            <p><b>Banininha Group</b></p>
 
         </FooterPrincipal>
     )

@@ -2,17 +2,14 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { GoToAdminHomePage } from "../../route/RouteFunctions";
 
-const useUnprotectedPage = () => {
+const UseUnprotectedPage = () => {
     const navigate = useNavigate()
-
-    useEffect(()=>{
+    useEffect(() => {
         const token = localStorage.getItem("token")
-
-        if(token) {
+        if (token) {
             GoToAdminHomePage(navigate)
         }
     }, [navigate])
-
 }
 
-export default useUnprotectedPage;
+export default UseUnprotectedPage;

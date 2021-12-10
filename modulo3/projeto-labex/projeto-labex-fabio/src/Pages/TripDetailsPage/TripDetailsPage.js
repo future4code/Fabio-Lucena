@@ -1,50 +1,79 @@
 import React from "react";
-import { useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer"
-import { Container, ListCards, ContainerPrincipal, CandidatosPendentes, ContainerButtons, Container2, ContainerDetails } from "../TripDetailsPage/styled"
+import { Container, ContainerPrincipal, CandidatosPendentes, ContainerButtons, Container2, ContainerDetails } from "../TripDetailsPage/styled"
 import { useNavigate, useParams } from "react-router-dom"
 import { useRequestData2 } from "../../components/CustomHooks/UseRequestData";
 import { URL_BASE } from "../../components/UrlBase";
-import { GoToHomePage, GoToTripDetailsPage } from "../../route/RouteFunctions";
+import { GoToHomePage, GoToAdminHomePage } from "../../route/RouteFunctions";
+import useProtectedPage from "../../components/CustomHooks/useProtectedPage";
+import { DecideCandidate } from "../../components/Requests";
+import { useEffect } from "react/cjs/react.development";
 //useHistory foi substituido por useNavigate no router 6
 
 export default function TripDetailsPage() {
+  useProtectedPage()
+
   const navigate = useNavigate()
-  const  { id }  = useParams()
   const url = URL_BASE
-  const [tripList, loadingTripList, errorTripList] = useRequestData2(url+`/trip/`+id, {})
+  const { id } = useParams()
+  const [tripList, loadingTripList, errorTripList, GetTrips2] = useRequestData2(url + `/trip/` + id, {})
 
-  // const token = localStorage.getItem("token")
-  console.log(url+`/trip/`+id)
-  // console.log(data)
-  console.log(tripList)
+  const reject = (candidateId) => {
+    const mensagem = "Candidato foi rejeitado!"
+    const body = {
+      "approve": false
+    }
+    DecideCandidate(body, tripList.trip.id, candidateId, GetTrips2, mensagem)
 
-  
+  }
+  const aproove = (candidateId) => {
+    const mensagem = "Candidato aprovado!"
+    const body = {
+      "approve": true
+    }
+    DecideCandidate(body, tripList.trip.id, candidateId, GetTrips2, mensagem)
+  }
 
-  const candidates = tripList && tripList.trip && tripList.trip.candidates.map((trip) => {
+  const candidatos = () => {
+    const candidates = tripList && tripList.trip && tripList.trip.candidates.map((trip) => {
+      return (
+        <ul>
+          <li>
+            <CandidatosPendentes>
+              <p key={trip.id} >Nome: {trip.name}</p>
+              <p>id: {trip.profession}</p>
+              <p>id: {trip.age}</p>
+              <p>id: {trip.country}</p>
+              <p>id: {trip.applicationText}</p>
+              <Container2>
+                <ContainerButtons>
+                  <button onClick={() => aproove(trip.id, trip.length, candidatos)}>Aprovar</button>
+                  <button onClick={() => reject(trip.id, trip.length, candidatos)}>Rejeitar</button>
+                </ContainerButtons>
+              </Container2>
+            </CandidatosPendentes>
+          </li>
+        </ul>
+      )
+    })
+    return candidates
+  }
+
+  const aproovCandidates = tripList && tripList.trip.approved && tripList.trip.approved.map((trip) => {
     return (
       <ul>
         <li>
-          <CandidatosPendentes>
-            <p key={trip.id} >Nome: {trip.name}</p>
-            <p>id: {trip.profession}</p>
-            <p>id: {trip.age}</p>
-            <p>id: {trip.country}</p>
-            <p>id: {trip.applicationText}</p>
-            <Container2>
-              <ContainerButtons>
-                <button>Aprovar</button>
-                <button>Rejeitar</button>
-              </ContainerButtons>
-            </Container2>
-          </CandidatosPendentes>
+          <p key={trip.id} >Nome: {trip.name}</p>
+          <p>Idade: {trip.age}</p>
+          <p>País: {trip.country}</p>
         </li>
       </ul>
     )
   })
 
-  console.log(tripList)
+
+  console.log(aproovCandidates)
 
   return (
     <Container>
@@ -52,24 +81,24 @@ export default function TripDetailsPage() {
       <Header />
 
       <ContainerPrincipal>
-        
+
         {loadingTripList && <p>Carregando...</p>}
         {!loadingTripList && errorTripList && <p>Ocorreu um erro</p>}
-        {!loadingTripList && tripList && tripList.length === 0 && (
-          <p>Não há viagens</p>
-        )}
         {tripList && tripList.trip && <h1>{tripList.trip.name}</h1>}
         {tripList && tripList.trip && <ContainerDetails>
-        <p>{tripList.trip.description}</p>
-        <p>{tripList.trip.planet}</p>
-        <p>{tripList.trip.durationInDays}</p>
-        <p>{tripList.trip.date}</p> 
+          <p><b>Descrição:</b> {tripList.trip.description}</p>
+          <p><b>Planeta:</b> {tripList.trip.planet}</p>
+          <p><b>Duração:</b> {tripList.trip.durationInDays}</p>
+          <p><b>Data:</b> {tripList.trip.date}</p>
         </ContainerDetails>}
 
-        <h3>Candidatos</h3>
-        {candidates}
-        <h3>Candidatos Aprovados</h3>
-        <button onClick={() => GoToHomePage(navigate)}>voltar</button>
+        {tripList && (tripList.trip.candidates.length > 0) && <h3>Candidatos</h3>}
+        {tripList && (tripList.trip.candidates) && candidatos()} 
+        {candidatos()}
+        {tripList && tripList.trip.approved.length > 0 && <h3>Candidatos Aprovados</h3>}
+        {aproovCandidates}
+        <button onClick={() => GoToHomePage(navigate)}>Home</button>
+        <button onClick={() => GoToAdminHomePage(navigate)}>voltar</button>
       </ContainerPrincipal>
 
       <Footer />
@@ -77,3 +106,4 @@ export default function TripDetailsPage() {
     </Container>
   );
 }
+

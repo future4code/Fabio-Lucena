@@ -7,7 +7,7 @@ border: 2px solid darkgray;
 flex-grow: 0;
 display: flex;
 justify-content: center;
-
+background-color: #3f3f42;
 `
 
 
@@ -15,7 +15,7 @@ function Header() {
     return (
         <HeaderPrincipal>
 
-            <p>Header</p>
+            <h1>LabeX</h1>
 
         </HeaderPrincipal>
     )

@@ -26,7 +26,7 @@ export const useRequestData = (url) => {
         GetTrips();
     }, [url]);
 
-    return [data, isLoading, error];
+    return [data, isLoading, error, GetTrips];
 }
 
 export const useRequestData2 = (url) => {
@@ -58,6 +58,6 @@ export const useRequestData2 = (url) => {
         GetTrips2();
     }, [url]);
 
-    return [data, isLoading, error];
+    return [data, isLoading, error, GetTrips2];
 }
 

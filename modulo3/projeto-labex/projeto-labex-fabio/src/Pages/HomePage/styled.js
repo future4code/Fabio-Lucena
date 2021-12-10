@@ -1,27 +1,23 @@
 import styled from "styled-components"
 
 export const ContainerPrincipal = styled.div`
-  margin: 0;
-  border: 2px solid darkgray;  
+  margin: 0; 
   flex-grow: 5;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  
+  background-color: darkgray;
  `
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
   min-height: 97vh;
-
 `
 
 export const ListCards = styled.div`
-  margin: 10px;
-  border: 2px solid darkgray;  
+  margin: 10px;  
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -34,6 +30,10 @@ export const ListCards = styled.div`
  export const Container2 = styled.div`
   display: flex;
   flex-direction: row;
+  width: 10vw;
+  justify-content: space-between;
  `
-
- 
+export const Button = styled.button`
+  border-radius: 20%;
+  background-color: darkorange;
+`
