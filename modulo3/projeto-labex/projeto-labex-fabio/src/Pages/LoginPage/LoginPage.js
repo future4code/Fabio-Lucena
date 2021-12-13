@@ -1,11 +1,12 @@
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer"
-import { ContainerPrincipal, FormCards, ContainerForms, Container, Select, Input } from "./styled";
+import { ContainerPrincipal, FormCards, Container, Input, Button } from "./styled";
 import { Login } from "../../components/Requests"
 import useForm from "../../components/CustomHooks/useForm"
 import { useNavigate } from "react-router-dom"
-import UseUnprotectedPage from "../../components/CustomHooks/UseUnprotectedPage";
+import UseUnprotectedPage from "../../components/CustomHooks/useUnprotectedPage";
+import { GoToHomePage } from "../../route/RouteFunctions";
 
 //useHistory foi substituido por useNavigate no router 6
 
@@ -38,7 +39,7 @@ export default function LoginPage() {
             required
           />
           <Input
-            placeholder={"password"}
+            placeholder={"Senha"}
             type={"password"}
             name={"password"}
             value={form.password}
@@ -46,8 +47,11 @@ export default function LoginPage() {
             required
           />
 
-          <button type={"submit"}>Login</button>
+          <Button type={"submit"}>Login</Button>
         </FormCards>
+
+
+        <Button onClick={() => GoToHomePage(navigate)}>Home</Button>
 
       </ContainerPrincipal>
 

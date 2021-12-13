@@ -1,23 +1,17 @@
-import React, { useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer"
 import useForm from "../../components/CustomHooks/useForm";
-import { Container, ContainerForms, FormCards, Input, Select } from "./styled";
-import { URL_BASE } from "../../components/UrlBase";
+import { Container, Container2, ContainerForms, FormCards, Input, Select, Button } from "./styled";
 import { useNavigate } from "react-router-dom"
-import { useRequestData } from "../../components/CustomHooks/UseRequestData";
 import { CreateTrip } from "../../components/Requests";
+import { GoToHomePage } from "../../route/RouteFunctions";
+import useProtectedPage from "../../components/CustomHooks/useProtectedPage";
 //useHistory foi substituido por useNavigate no router 6
 
 export default function ApplicationFormPage() {
-  const [tripsList] = useRequestData(`${URL_BASE}/trips`, {})
-  const [id, setId] = useState("")
+  useProtectedPage()
   const navigate = useNavigate()
   const { form, changeValues, clear } = useForm({ name: "", planet: "", date: "", description: "", durationInDays: "" })
-
-  const GoToListTripsPage = () => {
-    navigate("/trips/list")
-  }
 
   const sendForm = (event) => {
     event.preventDefault()
@@ -25,7 +19,6 @@ export default function ApplicationFormPage() {
     CreateTrip(form, mensagem)
     clear()
   }
-
 
   const minDate = () => {
     let data = new Date();
@@ -51,7 +44,7 @@ export default function ApplicationFormPage() {
 
       <ContainerForms>
 
-        <h1>Inscreva-se para uma viagem</h1>
+        <h1>Crie uma viagem</h1>
         <FormCards onSubmit={sendForm}>
 
 
@@ -99,16 +92,16 @@ export default function ApplicationFormPage() {
             min={50}
           />
 
-          <div>
-            <button onClick={() => navigate(-1)}>Voltar</button>
-            <button type={"submit"}>Enviar</button>
-          </div>
+          <Container2>
+            <Button onClick={() => navigate(-1)}>Voltar</Button>
+            <Button type={"submit"}>Enviar</Button>
+          </Container2>
 
         </FormCards>
 
 
 
-        <button onClick={() => GoToListTripsPage}>voltar</button>
+        <Button onClick={() => GoToHomePage(navigate)}>Home</Button>
 
 
       </ContainerForms>

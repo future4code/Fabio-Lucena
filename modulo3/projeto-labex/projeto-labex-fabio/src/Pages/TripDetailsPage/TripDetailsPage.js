@@ -1,14 +1,13 @@
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer"
-import { Container, ContainerPrincipal, CandidatosPendentes, ContainerButtons, Container2, ContainerDetails } from "../TripDetailsPage/styled"
+import { Container, ContainerPrincipal, CandidatosPendentes, ContainerButtons, Container2, ContainerDetails, ListCards, Button, Button2 } from "../TripDetailsPage/styled"
 import { useNavigate, useParams } from "react-router-dom"
 import { useRequestData2 } from "../../components/CustomHooks/UseRequestData";
 import { URL_BASE } from "../../components/UrlBase";
 import { GoToHomePage, GoToAdminHomePage } from "../../route/RouteFunctions";
 import useProtectedPage from "../../components/CustomHooks/useProtectedPage";
 import { DecideCandidate } from "../../components/Requests";
-import { useEffect } from "react/cjs/react.development";
 //useHistory foi substituido por useNavigate no router 6
 
 export default function TripDetailsPage() {
@@ -38,23 +37,19 @@ export default function TripDetailsPage() {
   const candidatos = () => {
     const candidates = tripList && tripList.trip && tripList.trip.candidates.map((trip) => {
       return (
-        <ul>
-          <li>
-            <CandidatosPendentes>
-              <p key={trip.id} >Nome: {trip.name}</p>
-              <p>id: {trip.profession}</p>
-              <p>id: {trip.age}</p>
-              <p>id: {trip.country}</p>
-              <p>id: {trip.applicationText}</p>
-              <Container2>
-                <ContainerButtons>
-                  <button onClick={() => aproove(trip.id, trip.length, candidatos)}>Aprovar</button>
-                  <button onClick={() => reject(trip.id, trip.length, candidatos)}>Rejeitar</button>
-                </ContainerButtons>
-              </Container2>
-            </CandidatosPendentes>
-          </li>
-        </ul>
+        <ListCards>
+          <CandidatosPendentes>
+            <p key={trip.id} ><b>Nome:</b> {trip.name}</p>
+            <p><b>Profissão:</b> {trip.profession}</p>
+            <p><b>Idade:</b> {trip.age}</p>
+            <p><b>País:</b> {trip.country}</p>
+            <p><b>Texto de Aplicação:</b> {trip.applicationText}</p>
+              <ContainerButtons>
+                <Button onClick={() => aproove(trip.id, trip.length, candidatos)}>Aprovar</Button>
+                <Button onClick={() => reject(trip.id, trip.length, candidatos)}>Rejeitar</Button>
+              </ContainerButtons>
+          </CandidatosPendentes>
+        </ListCards>
       )
     })
     return candidates
@@ -71,9 +66,6 @@ export default function TripDetailsPage() {
       </ul>
     )
   })
-
-
-  console.log(aproovCandidates)
 
   return (
     <Container>
@@ -92,13 +84,18 @@ export default function TripDetailsPage() {
           <p><b>Data:</b> {tripList.trip.date}</p>
         </ContainerDetails>}
 
+
         {tripList && (tripList.trip.candidates.length > 0) && <h3>Candidatos</h3>}
-        {tripList && (tripList.trip.candidates) && candidatos()} 
+
+        {tripList && (tripList.trip.candidates) && candidatos()}
         {candidatos()}
+
         {tripList && tripList.trip.approved.length > 0 && <h3>Candidatos Aprovados</h3>}
         {aproovCandidates}
-        <button onClick={() => GoToHomePage(navigate)}>Home</button>
-        <button onClick={() => GoToAdminHomePage(navigate)}>voltar</button>
+        <Container2>
+          <Button2 onClick={() => GoToHomePage(navigate)}>Home</Button2>
+          <Button2 onClick={() => GoToAdminHomePage(navigate)}>voltar</Button2>
+        </Container2>
       </ContainerPrincipal>
 
       <Footer />

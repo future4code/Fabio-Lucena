@@ -5,7 +5,7 @@ export const ContainerPrincipal = styled.div`
   flex-grow: 5;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: darkgray;
  `
@@ -13,7 +13,8 @@ export const ContainerPrincipal = styled.div`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 97vh;
+  min-height: 100vh;
+  height: 100%;
 `
 
 export const ListCards = styled.div`
@@ -36,4 +37,7 @@ export const ListCards = styled.div`
 export const Button = styled.button`
   border-radius: 20%;
   background-color: darkorange;
+  font-weight: bolder;
+  width: 4vw; 
+  cursor: pointer;
 `

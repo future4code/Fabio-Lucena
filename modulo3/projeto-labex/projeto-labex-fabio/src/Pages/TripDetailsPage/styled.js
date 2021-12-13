@@ -6,34 +6,32 @@ export const ContainerPrincipal = styled.div`
   flex-grow: 5;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  
  `
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-height: 97vh;
+  min-height: 100vh;
+  background-color: darkgray;
 
 `
 
 export const ListCards = styled.div`
-  margin: 10px;
+  margin: 15px;
   border: 2px solid darkgray;  
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: left;
   padding-top: 2px;
-  padding-left: 2px;
-  width: 20vw;
+  box-shadow: 5px 10px #3f3f42;
+  border-radius: 4%;
+  background-color: darkorange;
+  cursor: pointer;
  `
 
 export const CandidatosPendentes = styled.div`
   margin: 0;
-  border: 1px solid black;
   @media screen and (max-width: 900px){
     width: 60vw;
   }
@@ -46,24 +44,41 @@ export const CandidatosPendentes = styled.div`
 `
 
 export const ContainerButtons = styled.div`
-  margin-left: 25%;
-  border: 1px solid black;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  min-width: 10vw;
-  padding: 1vh;
-
-    
-
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+ min-width: 10vw;
+ padding: 1vh;
 `
 export const Container2 = styled.div`
-  display: flex;
+ display: flex;
+ flex-direction: row;
+ width: 10vw;
+ justify-content: space-between;
+`
 
-`
 export const ContainerDetails = styled.div`
-    padding: 10px 20px;
-    border-radius: 4px;
-    margin: 15px 0;
-    max-width: 500px;
+ padding: 10px 20px;
+ border-radius: 4px;
+ margin: 15px 0;
+ max-width: 500px;
 `
+
+export const Button = styled.button`
+ border-radius: 20px;
+ background-color: #bda091;
+ font-weight: bolder;
+ min-height: 4vh;
+ width: 4.5vw; 
+ cursor: pointer;
+`
+
+export const Button2 = styled.button`
+ border-radius: 20%;
+ background-color: #bda091;
+ font-weight: bolder;
+ min-height: 4vh;
+ width: 4.5vw; 
+ cursor: pointer;
+`
+

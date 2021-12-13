@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer"
-import { Container, ListCards, ContainerPrincipal, Container2 } from "../AdminHomePage/styled"
+import { Container, ListCards, ContainerPrincipal, Container2, Button, Button2 } from "../AdminHomePage/styled"
 import { useNavigate } from "react-router-dom"
 import { useRequestData } from "../../components/CustomHooks/UseRequestData";
 import { URL_BASE } from "../../components/UrlBase";
@@ -28,7 +28,7 @@ export default function AdminHomePage() {
   const list = tripList && tripList.map((trip) => {
     return (<ListCards>
       <p key={trip.id} onClick={() => GoToTripDetailsPage(navigate, trip.id)}>Nome: {trip.name}</p>
-      <button onClick={() => delTrip(trip.id)}>deletar</button>
+      <Button2 onClick={() => delTrip(trip.id)}>X</Button2>
 
     </ListCards>
     )
@@ -43,8 +43,8 @@ export default function AdminHomePage() {
       <ContainerPrincipal>
         <h2>Admin Home Page</h2>
         <Container2>
-          <button onClick={()=> GoToCreateTripPage(navigate)}>Criar Viagem</button>
-          <button onClick={()=> logOut(navigate)}>Logout</button>
+          <Button onClick={() => GoToCreateTripPage(navigate)}>Criar Viagem</Button>
+          <Button onClick={() => logOut(navigate)}>Logout</Button>
         </Container2>
         <h3>Viagens:</h3>
         {loadingTripList && <p>Carregando...</p>}
@@ -53,7 +53,7 @@ export default function AdminHomePage() {
           <p>Não há viagens</p>
         )}
         {list}
-        <button onClick={() => GoToHomePage(navigate)}>voltar</button>
+        <Button onClick={() => GoToHomePage(navigate)}>voltar</Button>
       </ContainerPrincipal>
 
       <Footer />

@@ -2,7 +2,7 @@ import React from "react";
 import HomePage from "../Pages/HomePage/HomePage"
 import AdminHomePage from "../Pages/AdminHomePage/AdminHomePage"
 import ApplicattionFormPage from "../Pages/ApplicationFormPage/ApplicationFormPage"
-import ListTripsPage from "../Pages/ListTripsPage"
+import ListTripsPage from "../Pages/ListTripPage/ListTripsPage"
 import LoginPage from "../Pages/LoginPage/LoginPage"
 import TripDetailsPage from "../Pages/TripDetailsPage/TripDetailsPage"
 import CreateTripPage from "../Pages/CreateTripPage/CreateTripPage"

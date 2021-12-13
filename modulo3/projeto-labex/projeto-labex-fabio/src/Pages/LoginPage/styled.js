@@ -33,25 +33,25 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-height: 97vh;
-
-`
-
-export const Select = styled.select`
-  width: 518px;
-  height: 40px;
-  border-radius: 10px;
-  padding: 4px 8px;
-  border-width: 1px;
-  margin: 0px 0px 15px;
+  min-height: 100vh;
   background-color: darkgray;
+
 `
 export const Input = styled.input`
-  width: 518px;
-  height: 40px;
-  border-radius: 10px;
+  width: 39vw;
+  height: 5vh;
+  border-radius: 15px;
   padding: 4px 8px;
-  border-width: 1px;
+  border-width: 3px;
   margin: 0px 0px 15px;
-  background-color: darkgray;
+  background-color: darkorange;
+  color: black;
+`
+export const Button = styled.button`
+border-radius: 20%;
+background-color: #bda091;
+font-weight: bolder;
+min-height: 4vh;
+width: 4.5vw; 
+cursor: pointer;
 `
