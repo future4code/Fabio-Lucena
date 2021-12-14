@@ -1,23 +1,31 @@
-import react from "react";
 import { useNavigate } from "react-router-dom";
-import { Login } from "../../components/Requests";
+import { Signup } from "../../components/Requests";
 import useForm from "../../components/useForm";
-import { GoToSignupPage } from "../../Routes/RouteFunctions";
 
-export default function LoginPage() {
+export default function SignupPage() {
     const navigate = useNavigate()
-    const { form, changeValues } = useForm({ email: "", password: "" })
+    const { form, changeValues } = useForm({ username: "", email: "", password: "" })
 
     const sendForm = (event) => {
         event.preventDefault()
-        Login(form, navigate)
+        Signup(form, navigate)
     }
     return (
         <div>
 
 
-            <form onSubmit={sendForm}>
-                <h3>Login:</h3>
+            <form>
+                <h3>Cadastre-se:</h3>
+
+                <input
+                    placeholder={"username"}
+                    type={"text"}
+                    name={"username"}
+                    value={form.username}
+                    onChange={changeValues}
+                    required
+                />
+
                 <input
                     placeholder={"email"}
                     type={"email"}
@@ -37,10 +45,13 @@ export default function LoginPage() {
                     required
                 />
 
-                <button type={"submit"}>Login</button>
+                <button type={"submit"}>Cadastrar</button>
             </form>
 
-            <button onClick={()=> GoToSignupPage(navigate)}>Cadastrar</button>
+            <button onClick={()=>navigate(-1)}>Voltar</button>
+
+
+            
 
         </div>)
 }
