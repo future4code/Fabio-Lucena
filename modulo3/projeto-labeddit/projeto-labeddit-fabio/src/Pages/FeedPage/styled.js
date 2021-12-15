@@ -34,17 +34,25 @@ align-items: center;
 box-shadow: 5px 10px #3f3f42;
 border-radius: 6px;
 background-color: darkorange;
-cursor: pointer;
 width: 20vw;
  `
-
 export const ContainerCount = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: space-between;
+align-items: center;
 width: 100%;
+
 ` 
 export const Img = styled.img`
-height: 5vh;
-width: 3vw;
+height: 1em;
+width: 1em;
+cursor: pointer;
 ` 
+export const Img2 = styled.img`
+height: 1.5em;
+width: 1.5em;
+cursor: pointer;
+padding: 1vh;
+` 
+

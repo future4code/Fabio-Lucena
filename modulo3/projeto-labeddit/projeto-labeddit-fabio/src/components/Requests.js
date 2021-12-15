@@ -47,3 +47,32 @@ export const CreatePost = (body, navigate) => {
     }).catch((err) => alert(err.response.message))
 
 }
+
+export const CreatePostVote = (id, body, GetPosts, navigate) => {
+    axios.post(`${URL_BASE}/posts/${id}/votes`, body, 
+        {
+            headers: {
+                ContentType: "application/json",
+                Authorization: localStorage.getItem("token")
+            }
+        }
+    ).then((response)=> {
+        alert("Voto criado com sucesso!")
+        GetPosts()
+    }).catch((err) => alert(err.response.message))
+
+}
+
+export const DeletePostVote = (id, getPost, navigate) => {
+    axios.delete(`${URL_BASE}/posts/${id}/votes`, 
+        {
+            headers: {
+                Authorization: localStorage.getItem("token")
+            }
+        }
+    ).then((response)=> {
+        alert("Voto deletado com sucesso!")
+        getPost()
+    }).catch((err) => alert(err.response.message))
+
+}

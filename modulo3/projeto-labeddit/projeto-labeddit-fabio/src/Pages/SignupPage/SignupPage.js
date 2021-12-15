@@ -14,7 +14,7 @@ export default function SignupPage() {
         <div>
 
 
-            <form>
+            <form onSubmit={sendForm}>
                 <h3>Cadastre-se:</h3>
 
                 <input
