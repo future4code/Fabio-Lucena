@@ -13,72 +13,97 @@ import Logo2 from '../../img/delVotoOff.png'
 import Logo3 from '../../img/addVotoOn.png'
 import Logo4 from '../../img/delVotoOn.png'
 import Logo5 from '../../img/mais.png'
+import { GoToPostPage } from "../../Routes/RouteFunctions";
+import PostPage from "../PostPage/PostPage";
 
+// export const savePost = (username, body) =>{
+//     const user = username
+//     const postBody = body
+
+//     return [user, postBody]
+// }
 
 export default function FeedPage() {
     const navigate = useNavigate()
     const { form, changeValues, clear } = useForm({ title: "", body: "" })
-    let [ page, setPage ] = useState(10) 
+    let [page, setPage] = useState(10)
     const [isLoading, setIsLoading] = useState(true);
     const [posts, GetPosts] = useRequestData([], setIsLoading, `${URL_BASE}/posts?size=${page}`)
-    const { imageVote, setImageVote } = useState(Logo) 
     const posts1 = posts
-    
+
+    let voteImage = Logo 
+
+   
+
     useEffect(() => {
-        
-    
+
+
         GetPosts()
-        
+
     }, [form, posts])
-    
+
     const sendForm = (event) => {
         event.preventDefault()
         CreatePost(form, navigate)
         clear()
     }
 
-    const votePost = (id) => {
+    const votePost = (id, userVote, dir) => {
         const body = {
-            direction: 1
+            direction: dir
         }
-        CreatePostVote(id, body, getPost, navigate)
-        GetPosts()
+
+        if (userVote === null) {
+            
+            CreatePostVote(id, body, getPost, navigate)
+            voteImage = Logo3
+            GetPosts()
+            console.log("oi")
+        } else if (userVote !== null) {
+            DeletePostVote(id, getPost, navigate)
+            GetPosts()
+        }
     }
 
-    const delVotePost = (id) => {
-        DeletePostVote(id, getPost, navigate)
-        GetPosts()
+    const funcaoAux = (id, username, body) =>{
+        GoToPostPage(navigate, id)
+        // savePost(username, body)    
     }
 
-    const morePosts = () =>{
+    
+
+    const morePosts = () => {
         setPage(page + 10)
         GetPosts()
     }
 
+
     const getPost = () => {
 
         const listPost = posts1.map((post) => {
+            const vote = post.userVote
             return (
-                <ListCards>
+                <ListCards onClick={()=> funcaoAux(post.id, post.username, post.body)}>
 
                     <h4 key={post.id}><b>{post.username}</b></h4>
                     <h3>{post.title}</h3>
-                    
-                        <p>{post.body}</p>
-                    
+
+                    <p>{post.body}</p>
 
                     <ContainerCount>
+                        
                         {(post.voteSum) ? (
                             <div>
-                                <Img src={Logo} onClick={() => votePost(post.id)} />
+                                <Img src={( post.userVote !== null && post.userVote > 0 )? Logo3 : Logo} onClick={() => votePost(post.id, post.userVote, 1)} />
+                                {console.log(vote)}
                                 <span> {post.voteSum} </span>
-                                <Img src={Logo2} onClick={() => delVotePost(post.id)} />
+                                <Img src={( post.userVote !== null && post.userVote < 0 )? Logo4 : Logo2} onClick={() => votePost(post.id, post.userVote, -1)} />
                             </div>
                         ) : (
                             <div>
-                                <Img src={Logo} onClick={() => votePost(post.id)} />
+                                <Img src={( post.userVote !== null && post.userVote > 0 )? Logo3 : Logo} onClick={() => votePost(post.id, post.userVote, 1)} />
                                 <span> 0 </span>
-                                <Img src={Logo2} onClick={() => delVotePost(post.id)} />
+                                <Img src={( post.userVote !== null && post.userVote < 0 )? Logo4 : Logo2} onClick={() => votePost(post.id, post.userVote, -1)} />
                             </div>
                         )
                         }
@@ -92,6 +117,8 @@ export default function FeedPage() {
 
         return listPost
     }
+
+   
 
     return (
         <ContainerPrincipal>
@@ -122,17 +149,14 @@ export default function FeedPage() {
 
                 </Form>
 
-                {/* {isLoading && <p>Carregando...</p>} */}
-                {/* {!isLoading && error && <p>Ocorreu um erro</p>} */}
-                {/* {posts && getPost()} */}
-                    {/* {getPost()} */}
+                {/* <img src={voteImage}/> */}
 
-                    {isLoading ? <p>Loading...</p> : getPost()}
+                {isLoading ? <p>Loading...</p> : getPost()}
 
-                <Img2 src={Logo5} onClick={()=> morePosts()}/>
+                <Img2 src={Logo5} onClick={() => morePosts()} />
             </ContainerNewPost>
 
-                
+
 
             <Footer />
         </ContainerPrincipal>

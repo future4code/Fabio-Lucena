@@ -63,8 +63,52 @@ export const CreatePostVote = (id, body, GetPosts, navigate) => {
 
 }
 
-export const DeletePostVote = (id, getPost, navigate) => {
+export const DeletePostVote = (id, getPost) => {
     axios.delete(`${URL_BASE}/posts/${id}/votes`, 
+        {
+            headers: {
+                Authorization: localStorage.getItem("token")
+            }
+        }
+    ).then((response)=> {
+        alert("Voto deletado com sucesso!")
+        getPost()
+    }).catch((err) => alert(err.response.message))
+
+}
+
+export const CreateComment = (id, body) => {
+    axios.post((URL_BASE + "/posts/"+id+"/comments"), body,
+        {
+            headers: {
+                ContentType: "application/json",
+                Authorization: localStorage.getItem("token")
+            }
+        }
+    ).then((response)=> {
+        alert("Comentário criado com sucesso!")
+        
+    }).catch((err) => alert(err.response.message))
+
+}
+
+export const CreateCommentVote = (id, body, GetPosts) => {
+    axios.post(`${URL_BASE}/comments/${id}/votes`, body, 
+        {
+            headers: {
+                ContentType: "application/json",
+                Authorization: localStorage.getItem("token")
+            }
+        }
+    ).then((response)=> {
+        alert("Voto criado com sucesso!")
+        GetPosts()
+    }).catch((err) => alert(err.response.message))
+
+}
+
+export const DeleteCommentVote = (id, getPost) => {
+    axios.delete(`${URL_BASE}/comments/${id}/votes`, 
         {
             headers: {
                 Authorization: localStorage.getItem("token")

@@ -9,3 +9,7 @@ export const GoToFeedPage = (navigate) => {
     navigate("/FeedPage")
 }
 
+export const GoToPostPage = (navigate, id) =>{
+    navigate(`/posts/${id}/comments`)
+}
+

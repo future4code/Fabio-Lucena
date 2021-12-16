@@ -56,4 +56,3 @@ width: 1.5em;
 cursor: pointer;
 padding: 1vh;
 ` 
-
