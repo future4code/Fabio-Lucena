@@ -13,3 +13,6 @@ export const GoToPostPage = (navigate, id) =>{
     navigate(`/posts/${id}/comments`)
 }
 
+export const GoToLoginPage = (navigate) =>{
+    navigate("/")
+}

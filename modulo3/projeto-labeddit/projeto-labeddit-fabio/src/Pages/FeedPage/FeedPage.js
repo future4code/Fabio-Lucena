@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { ContainerNewPost, ContainerPrincipal, Form, ListCards, ContainerCount, Img, Img2 } from "./styled";
+import { ContainerNewPost, ContainerPrincipal, Form, ListCards, ContainerCount, Img, Img2, Input, Container, Button } from "./styled";
 import useForm from "../../components/useForm";
 import Header from "../../components/Header/Header"
 import Footer from "../../components/Footer/Footer";
 import { CreatePost, CreatePostVote, DeletePostVote } from "../../components/Requests";
 import { useNavigate } from "react-router-dom";
 import { useRequestData } from "../../components/useRequestData";
+import useProtectedPage from "../../components/useProtectedPage"
 import { URL_BASE } from "../../components/urlBase";
 import Logo from '../../img/addVotoOff.png'
 import Logo2 from '../../img/delVotoOff.png'
@@ -16,14 +17,8 @@ import Logo5 from '../../img/mais.png'
 import { GoToPostPage } from "../../Routes/RouteFunctions";
 import PostPage from "../PostPage/PostPage";
 
-// export const savePost = (username, body) =>{
-//     const user = username
-//     const postBody = body
-
-//     return [user, postBody]
-// }
-
 export default function FeedPage() {
+    useProtectedPage()
     const navigate = useNavigate()
     const { form, changeValues, clear } = useForm({ title: "", body: "" })
     let [page, setPage] = useState(10)
@@ -58,16 +53,14 @@ export default function FeedPage() {
             CreatePostVote(id, body, getPost, navigate)
             voteImage = Logo3
             GetPosts()
-            console.log("oi")
         } else if (userVote !== null) {
             DeletePostVote(id, getPost, navigate)
             GetPosts()
         }
     }
 
-    const funcaoAux = (id, username, body) =>{
-        GoToPostPage(navigate, id)
-        // savePost(username, body)    
+    const funcaoAux = (id) =>{
+        GoToPostPage(navigate, id) 
     }
 
     
@@ -83,19 +76,18 @@ export default function FeedPage() {
         const listPost = posts1.map((post) => {
             const vote = post.userVote
             return (
-                <ListCards onClick={()=> funcaoAux(post.id, post.username, post.body)}>
+                <ListCards >
+                    <Container onClick={()=> funcaoAux(post.id)}>
+                    <h4 key={post.id} onClick={()=> funcaoAux(post.id)}><b>{post.username}</b></h4>
+                    <h3 onClick={()=> funcaoAux(post.id)}>{post.title}</h3>
 
-                    <h4 key={post.id}><b>{post.username}</b></h4>
-                    <h3>{post.title}</h3>
-
-                    <p>{post.body}</p>
-
+                    <p onClick={()=> funcaoAux(post.id)}>{post.body}</p>
+                    </Container>
                     <ContainerCount>
                         
                         {(post.voteSum) ? (
                             <div>
                                 <Img src={( post.userVote !== null && post.userVote > 0 )? Logo3 : Logo} onClick={() => votePost(post.id, post.userVote, 1)} />
-                                {console.log(vote)}
                                 <span> {post.voteSum} </span>
                                 <Img src={( post.userVote !== null && post.userVote < 0 )? Logo4 : Logo2} onClick={() => votePost(post.id, post.userVote, -1)} />
                             </div>
@@ -108,7 +100,7 @@ export default function FeedPage() {
                         )
                         }
 
-                        {(post.commentCount > 0) ? <p>{post.commentCount} comentários</p> : <p>0 comentários</p>}
+                        {(post.commentCount > 0) ? <p onClick={()=> funcaoAux(post.id)}>{post.commentCount} comentários</p> : <p onClick={()=> funcaoAux(post.id)}>0 comentários</p>}
                     </ContainerCount>
 
                 </ListCards>
@@ -127,7 +119,7 @@ export default function FeedPage() {
 
             <ContainerNewPost>
                 <Form onSubmit={sendForm}>
-                    <input
+                    <Input
                         placeholder={"Titulo"}
                         type={"text"}
                         name={"title"}
@@ -136,7 +128,7 @@ export default function FeedPage() {
                         required
                     />
 
-                    <input
+                    <Input
                         placeholder={"Post"}
                         type={"text"}
                         name={"body"}
@@ -145,7 +137,7 @@ export default function FeedPage() {
                         required
                     />
 
-                    <button type={"submit"}>Postar</button>
+                    <Button type={"submit"}>Postar</Button>
 
                 </Form>
 

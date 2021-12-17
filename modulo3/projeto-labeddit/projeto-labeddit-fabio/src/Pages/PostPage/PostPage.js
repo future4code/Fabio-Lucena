@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { ContainerNewPost, ContainerPrincipal, Form, ListCards, ContainerCount, Img, Img2 } from "./styled";
+import { ContainerNewPost, ContainerPrincipal, Form, ListCards, ContainerCount, Img, Input, Button, Button2 } from "./styled";
 import useForm from "../../components/useForm";
 import Header from "../../components/Header/Header"
 import Footer from "../../components/Footer/Footer";
-import { CreateComment, CreateCommentVote, CreatePostVote, DeleteCommentVote, DeletePostVote } from "../../components/Requests";
+import { CreateComment, CreateCommentVote, DeleteCommentVote } from "../../components/Requests";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRequestData } from "../../components/useRequestData";
 import { URL_BASE } from "../../components/urlBase";
@@ -12,8 +12,11 @@ import Logo from '../../img/addVotoOff.png'
 import Logo2 from '../../img/delVotoOff.png'
 import Logo3 from '../../img/addVotoOn.png'
 import Logo4 from '../../img/delVotoOn.png'
+import useProtectedPage from "../../components/useProtectedPage";
+import { GoToFeedPage } from "../../Routes/RouteFunctions";
 
 export default function PostPage() {
+    useProtectedPage()
     const { id } = useParams()
     const navigate = useNavigate()
     const { form, changeValues, clear } = useForm({ body: "" })
@@ -47,7 +50,6 @@ export default function PostPage() {
 
             CreateCommentVote(id, body, getComment)
             GetComments()
-            console.log("oi")
         } else if (userVote !== null) {
             DeleteCommentVote(id, getComment)
             GetComments()
@@ -61,7 +63,7 @@ export default function PostPage() {
         }).map((post) => {
             return (
                 <ListCards>
-                    <p>{post.username}</p>
+                    <h3>{post.username}</h3>
                     <p>{post.body}</p>
                 </ListCards>
             )
@@ -98,7 +100,6 @@ export default function PostPage() {
                         )
                         }
 
-                        {(post.commentCount > 0) ? <p>{post.commentCount} comentários</p> : <p>0 comentários</p>}
                     </ContainerCount>
 
                 </ListCards>
@@ -114,12 +115,12 @@ export default function PostPage() {
             <Header />
 
             <ContainerNewPost>
-
+                <h1>Post</h1>
                 {isLoading2 ? <p>Loading</p> : (savePost())}
 
 
                 <Form onSubmit={sendForm}>
-                    <input
+                    <Input
                         placeholder={"Comentário"}
                         type={"text"}
                         name={"body"}
@@ -128,19 +129,19 @@ export default function PostPage() {
                         required
                     />
 
-                    <button type={"submit"}>Postar</button>
+                    <Button type={"submit"}>Postar</Button>
 
                 </Form>
 
-
+                <h3>Comentários:</h3>
                 {isLoading && comments.length ===0 && <p>Não há comentários</p>}
                 {(isLoading) ? <p>Loading...</p> : (getComment())}
                 
-
+                
 
             </ContainerNewPost>
-
-
+            
+            <Button2 onClick={()=>GoToFeedPage(navigate)}>Voltar</Button2>
 
             <Footer />
         </ContainerPrincipal>

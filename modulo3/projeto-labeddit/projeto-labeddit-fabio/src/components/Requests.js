@@ -57,7 +57,6 @@ export const CreatePostVote = (id, body, GetPosts, navigate) => {
             }
         }
     ).then((response)=> {
-        alert("Voto criado com sucesso!")
         GetPosts()
     }).catch((err) => alert(err.response.message))
 
@@ -71,7 +70,6 @@ export const DeletePostVote = (id, getPost) => {
             }
         }
     ).then((response)=> {
-        alert("Voto deletado com sucesso!")
         getPost()
     }).catch((err) => alert(err.response.message))
 
@@ -101,8 +99,7 @@ export const CreateCommentVote = (id, body, GetPosts) => {
             }
         }
     ).then((response)=> {
-        alert("Voto criado com sucesso!")
-        GetPosts()
+            GetPosts()
     }).catch((err) => alert(err.response.message))
 
 }
@@ -115,7 +112,7 @@ export const DeleteCommentVote = (id, getPost) => {
             }
         }
     ).then((response)=> {
-        alert("Voto deletado com sucesso!")
+       
         getPost()
     }).catch((err) => alert(err.response.message))
 

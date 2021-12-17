@@ -5,7 +5,7 @@ export default function Footer(){
 
     return(
         <ContainerPrincipal>
-            <p>Footer</p>
+            <p>Banininha Group</p>
         </ContainerPrincipal>
     )
 }
