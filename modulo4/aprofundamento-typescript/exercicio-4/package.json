@@ -1,0 +1,12 @@
+{
+  "name": "exercicio-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "exercicio-4.js",
+  "scripts": {
+    "start": "tsc && node ./build/exercicio-4.js"
+  },
+  "keywords": [],
+  "author": "Fabio-Lucena",
+  "license": "ISC"
+}
