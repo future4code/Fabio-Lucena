@@ -1,0 +1,27 @@
+{
+  "name": "exercicio-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "typescript": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.10"
+  },
+  "scripts": {
+    "start": "tsc && node ./build/exercicio-1.js",
+    "exercicio-2": "tsc && node ./build/exercicio-2.js",
+    "start3": "tsc && node ./build/exercicio-3.js",
+    "start4": "tsc && node ./build/exercicio-4.js",
+    "start5": "tsc && node ./build/exercicio-5.js",
+    "start6": "tsc && node ./build/exercicio-6.js",
+    "start7": "tsc && node ./build/exercicio-7.js",
+    "start8": "tsc && node ./build/exercicio-8.js",
+    "start9": "tsc && node ./build/exercicio-9.js",
+    "start10": "tsc && node ./build/exercicio-10.js",
+    "start11": "tsc && node ./build/exercicio-11.js"
+  },
+  "author": "Fabio Lucena",
+  "license": "ISC"
+}
