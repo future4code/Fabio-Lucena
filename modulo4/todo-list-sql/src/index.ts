@@ -4,170 +4,195 @@ import knex from "knex";
 import { AddressInfo } from "net";
 import dotenv from "dotenv";
 import connection from "./connection";
-import { criaUsuario } from './endpoints/endpoints';
+// import { criaUsuario } from './endpoints/endpoints';
 import { body, bodyTask } from './types';
+import { endpoints } from './endpoints/endpoints';
 
-const app: Express = express();
+endpoints()
 
-app.use(express.json());
-app.use(cors());
+// const app: Express = express();
 
-const usuarioPorId = async (id: string): Promise<any> => {
-    const result = await connection.raw(`
-      SELECT * FROM users WHERE id = '${id}'
-    `)
-    return result[0][0]
-}
+// app.use(express.json());
+// app.use(cors());
 
-app.post("/user", async (req, res) => {
-    try {
-        const body: body = {
-            id: Date.now().toString(),
-            name: req.body.name,
-            nickname: req.body.nickname,
-            email: req.body.email
-        }
+// const usuarioPorId = async (id: string): Promise<any> => {
+//     const result = await connection.raw(`
+//       SELECT * FROM users WHERE id = '${id}'
+//     `)
+//     return result[0][0]
+// }
 
-        if (!req.body.name || req.body.name === "") {
-            throw new Error("Favor preencha todos os campos necessários!")
-        }
+// app.post("/user", async (req, res) => {
+//     try {
+//         const body: body = {
+//             id: Date.now().toString(),
+//             name: req.body.name,
+//             nickname: req.body.nickname,
+//             email: req.body.email
+//         }
 
-        if (!req.body.nickname || req.body.nickname === "") {
-            throw new Error("Favor preencha todos os campos necessários!")
-        }
+//         if (!req.body.name || req.body.name === "") {
+//             throw new Error("Favor preencha todos os campos necessários!")
+//         }
 
-        if (!req.body.email || req.body.email === "") {
-            throw new Error("Favor preencha todos os campos necessários!")
-        }
+//         if (!req.body.nickname || req.body.nickname === "") {
+//             throw new Error("Favor preencha todos os campos necessários!")
+//         }
 
-        await connection("users")
-            .insert([{ id: body.id, name: body.name, nickname: body.nickname, email: body.email }])
+//         if (!req.body.email || req.body.email === "") {
+//             throw new Error("Favor preencha todos os campos necessários!")
+//         }
 
-        res.status(200).send("sucesso!")
+//         await connection("users")
+//             .insert([{ id: body.id, name: body.name, nickname: body.nickname, email: body.email }])
 
-    } catch (error: any) {
-        console.log(error.message)
-        res.status(500).send(error.message)
-    }
-})
+//         res.status(200).send("sucesso!")
 
-app.get("/user/:id", async (req, res) => {
-    try {
-        const userId: any = req.params.id
+//     } catch (error: any) {
+//         console.log(error.message)
+//         res.status(500).send(error.message)
+//     }
+// })
 
-        const usuario = await connection("users")
-            .select()
-            .where({ id: userId })
+// app.get("/user/all", async (req, res) => {
+//     try {
+//         const users = await connection("users")
+//             .select('id', 'nickname')
+        
+//         res.status(200).send({users})    
+//     } catch (error: any) {
 
-        if (usuario.length <= 0) {
-            throw new Error("Usuário não encontrado")
-        }
+//     }
 
-        console.log(usuario)
-        res.status(200).send({ usuario })
-    } catch (error: any) {
-        console.log(error.message)
-        res.status(500).send(error.message)
-    }
-})
+// })
 
-app.put("/user/edit/:id", async (req, res) => {
-    try {
-        const userId = req.params.id
+// app.get("/user/:id", async (req, res) => {
+//     try {
+//         const userId: any = req.params.id
 
-        if((!req.body.name || req.body.name === "") && (req.body.nickname !== "")){
-            await connection("users")
-            .update({nickname: req.body.nickname})
-            .where({id: userId}) 
-        }else if((!req.body.nickname || req.body.nickname === "") && (req.body.name !== "")){
-            await connection("users")
-            .update({name: req.body.name}) 
-            .where({id: userId}) 
-        }else{
-            throw new Error("Favor preencher os campos que você deseja editar")
-        }
+//         const usuario = await connection("users")
+//             .select()
+//             .where({ id: userId })
 
-        const usuario = await usuarioPorId(userId)
-        console.log(usuario)
+//         if (usuario.length <= 0) {
+//             throw new Error("Usuário não encontrado")
+//         }
 
-        res.status(200).send("sucesso")
+//         console.log(usuario)
+//         res.status(200).send({ usuario })
+//     } catch (error: any) {
+//         console.log(error.message)
+//         res.status(500).send(error.message)
+//     }
+// })
 
-    } catch (error: any) {
-        res.status(500).send(error.message)
-    }
-})
+// app.put("/user/edit/:id", async (req, res) => {
+//     try {
+//         const userId = req.params.id
 
-app.post("/task", async (req, res) => {
-    try {
+//         if ((!req.body.name || req.body.name === "") && (req.body.nickname !== "")) {
+//             await connection("users")
+//                 .update({ nickname: req.body.nickname })
+//                 .where({ id: userId })
+//         } else if ((!req.body.nickname || req.body.nickname === "") && (req.body.name !== "")) {
+//             await connection("users")
+//                 .update({ name: req.body.name })
+//                 .where({ id: userId })
+//         } else {
+//             throw new Error("Favor preencher os campos que você deseja editar")
+//         }
 
-        let data = req.body.limitDate.split("/")
+//         const usuario = await usuarioPorId(userId)
+//         console.log(usuario)
 
+//         res.status(200).send("sucesso")
 
-        console.log(data, `${data[2]}/${data[1]}/${data[0]}`);
+//     } catch (error: any) {
+//         res.status(500).send(error.message)
+//     }
+// })
 
+// app.post("/task", async (req, res) => {
+//     try {
 
-        const body: bodyTask = {
-            id: Date.now().toString(),
-            title: req.body.title,
-            description: req.body.description,
-            limitDate: `${data[2]}/${data[1]}/${data[0]}`,
-            creatorUserId: req.body.creatorUserId
-        }
-
-        if (req.body.title === "") {
-            throw new Error("Favor preencha todos os campos necessários!")
-        }
-
-        if (req.body.description === "") {
-            throw new Error("Favor preencha todos os campos necessários!")
-        }
-
-        if (req.body.limitDate === "") {
-            throw new Error("Favor preencha todos os campos necessários!")
-        }
-
-        if (req.body.creatorUserId === "") {
-            throw new Error("Favor preencha todos os campos necessários!")
-        }
-
-        await connection("ToDos")
-            .insert([{id: body.id, title: body.title, description: body.description, limitDate: body.limitDate, creatorUserId: body.creatorUserId }])
-
-        res.status(200).send("sucesso!")
-
-    } catch (error: any) {
-        console.log(error.message)
-        res.status(500).send(error.message)
-    }
-})
-
-app.get("/task/:id", async (req, res) => {
-    try {
-        const taskId: any = req.params.id
-
-        const tarefa = await connection("ToDos")
-            .select()
-            .where({ id: taskId })
-            //Falta pegar os dados do criador
-
-        if (tarefa.length <= 0) {
-            throw new Error("Tarefa não encontrada")
-        }
-
-        console.log(tarefa)
-        res.status(200).send({ tarefa })
-    } catch (error: any) {
-        console.log(error.message)
-        res.status(500).send(error.message)
-    }
-})
+//         let data = req.body.limitDate.split("/")
 
 
-const server = app.listen(process.env.PORT || 3003, () => {
-    if (server) {
-        const address = server.address() as AddressInfo;
-        console.log(`Server is running in http://localhost: ${address.port}`);
-    } else {
-        console.error(`Failure upon starting server.`);
-    }
-});
+//         console.log(data, `${data[2]}/${data[1]}/${data[0]}`);
+
+
+//         const body: bodyTask = {
+//             id: Date.now().toString(),
+//             title: req.body.title,
+//             description: req.body.description,
+//             limitDate: `${data[2]}-${data[1]}-${data[0]}`,
+//             creatorUserId: req.body.creatorUserId
+//         }
+
+//         if (req.body.title === "") {
+//             throw new Error("Favor preencha todos os campos necessários!")
+//         }
+
+//         if (req.body.description === "") {
+//             throw new Error("Favor preencha todos os campos necessários!")
+//         }
+
+//         if (req.body.limitDate === "") {
+//             throw new Error("Favor preencha todos os campos necessários!")
+//         }
+
+//         if (req.body.creatorUserId === "") {
+//             throw new Error("Favor preencha todos os campos necessários!")
+//         }
+
+//         await connection("ToDos")
+//             .insert([{ id: body.id, title: body.title, description: body.description, limitDate: body.limitDate, creatorUserId: body.creatorUserId }])
+
+//         res.status(200).send("sucesso!")
+
+//     } catch (error: any) {
+//         console.log(error.message)
+//         res.status(500).send(error.message)
+//     }
+// })
+
+// app.get("/task/:id", async (req, res) => {
+//     try {
+//         const taskId: any = req.params.id
+
+//         const tarefas = await connection("ToDos")
+//             .select("users.id as creatorUserId", 'nickname as creatorNickname', 'ToDos.id as taskId', 'title', 'description', 'limitDate', 'status',)
+//             .from('users')
+//             .join('ToDos', 'users.id', '=', 'ToDos.creatorUserId')
+
+//         //Falta pegar os dados do criador
+
+//         const tarefaEscolhida = tarefas.filter((item) => {
+//             return item.taskId === taskId
+//         }).map((item) => item)
+
+
+//         if (tarefas.length <= 0) {
+//             throw new Error("Tarefa não encontrada")
+//         }
+
+
+
+//         console.log(tarefaEscolhida)
+//         res.status(200).send({ tarefaEscolhida })
+//     } catch (error: any) {
+//         console.log(error.message)
+//         res.status(500).send(error.message)
+//     }
+// })
+
+
+
+// const server = app.listen(process.env.PORT || 3003, () => {
+//     if (server) {
+//         const address = server.address() as AddressInfo;
+//         console.log(`Server is running in http://localhost: ${address.port}`);
+//     } else {
+//         console.error(`Failure upon starting server.`);
+//     }
+// });
