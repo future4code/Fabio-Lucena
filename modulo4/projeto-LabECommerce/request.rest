@@ -1,0 +1,8 @@
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+    "name": "astrodev",
+    "email": "astrodev@amil.com",
+    "password": "123456"
+}
