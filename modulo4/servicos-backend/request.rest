@@ -1,0 +1,11 @@
+GET https://viacep.com.br/ws/80230040/json/
+
+###
+
+POST http://localhost:3003/user/address
+Content-Type: application/json
+
+{
+    "cep": "80230040",
+    "numero": "2085"
+}
