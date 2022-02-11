@@ -11,6 +11,16 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
             password: req.body.password
         }
 
+        if(!body.name){
+            throw new Error("Favor preencha todos os campos necessários!")
+        }
+        if(!body.email){
+            throw new Error("Favor preencha todos os campos necessários!")
+        }
+        if(!body.password){
+            throw new Error("Favor preencha todos os campos necessários!")
+        }
+
         const user = await createUserSql(body)
 
         res.status(200).send(`Usuario criado com sucesso!`)

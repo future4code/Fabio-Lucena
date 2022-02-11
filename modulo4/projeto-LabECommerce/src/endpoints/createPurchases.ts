@@ -9,8 +9,7 @@ export const createPurchases = async (req: Request, res: Response): Promise<void
 
         const product = await getProduct(productId)
         const price = product.price
-        console.log(product)
-        console.log(price)
+        
 
         const body: purchase = {
             id: Date.now().toString(),
