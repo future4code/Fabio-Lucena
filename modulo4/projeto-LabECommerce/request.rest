@@ -32,3 +32,7 @@ Content-Type: application/json
     "price": "",
     "image_url": "https://www.amd.com/system/files/styles/600px/private/2020-09/616656-amd-ryzen-5-5000-series-PIB-fan-1260x709.png?itok=JV2LS8dj"
 }
+
+###
+
+GET http://localhost:3003/products
