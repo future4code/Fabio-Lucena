@@ -3,13 +3,13 @@ import { connection } from "../data/connection"
 import { purchase, user } from "../types"
 
 export const createPurchases = async (req: Request, res: Response): Promise<void> => {
-    try{
+    try {
 
         const productId = req.body.product_id
 
         const product = await getProduct(productId)
         const price = product.price
-        
+
 
         const body: purchase = {
             id: Date.now().toString(),
@@ -19,14 +19,28 @@ export const createPurchases = async (req: Request, res: Response): Promise<void
             product_id: req.body.product_id
         }
 
-        const user = await createPurchaseSql(body)
+        if (!body.quantity) {
+            throw new Error("Favor preencha todos os campos necessários!")
+        }
+        if (!body.total_price) {
+            throw new Error("Favor preencha todos os campos necessários!")
+        }
+        if (!body.user_id) {
+            throw new Error("Favor preencha todos os campos necessários!")
+        }
+        if (!body.product_id) {
+            throw new Error("Favor preencha todos os campos necessários!")
+        }
+
+        await createPurchaseSql(body)
 
         res.status(200).send(`Compra criada com sucesso!`)
 
-    }catch(error: any){
+    } catch (error: any) {
         res.send(error.message)
     }
 }
+
 
 export async function createPurchaseSql(body: purchase): Promise<any> {
     const result = await connection.raw(`
@@ -39,7 +53,7 @@ export async function createPurchaseSql(body: purchase): Promise<any> {
    `)
 
     return result[0]
-} 
+}
 
 export async function getProduct(id: string): Promise<any> {
     const result = await connection.raw(`

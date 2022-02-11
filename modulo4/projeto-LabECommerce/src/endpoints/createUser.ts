@@ -21,7 +21,7 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
             throw new Error("Favor preencha todos os campos necessários!")
         }
 
-        const user = await createUserSql(body)
+         await createUserSql(body)
 
         res.status(200).send(`Usuario criado com sucesso!`)
 
