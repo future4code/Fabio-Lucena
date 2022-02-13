@@ -1,0 +1,32 @@
+GET http://localhost:3003/users
+
+###
+
+GET http://localhost:3003/users?name=amanda
+
+###
+
+
+@type = operations
+
+GET http://localhost:3003/users/{{type}}
+
+###
+
+GET http://localhost:3003/users?sort=tipo
+
+###
+
+GET http://localhost:3003/users?page=1
+
+### 
+
+GET http://localhost:3003/user?name=&type=CX&sort=nome&page=1
+
+###
+
+GET http://localhost:3003/user?name=amanda&type=Teacher&sort=nome&page=1
+
+###
+
+GET http://localhost:3003/user?name=amanda&type=&sort=nome&page=1
