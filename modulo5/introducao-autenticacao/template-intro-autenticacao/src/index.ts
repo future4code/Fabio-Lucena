@@ -1,6 +1,6 @@
 import app from "./app"
 import editUser from './endpoints/editUser'
-import createUser from './endpoints/createUser'
+import criaUsuario from "./endpoints/criaUsuario"
 
-app.post('/user/signup', createUser)
+app.post('/user/signup', criaUsuario)
 app.put('/user/edit/:id', editUser)

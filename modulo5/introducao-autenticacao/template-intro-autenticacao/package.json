@@ -4,7 +4,7 @@
     "main": "index.js",
     "scripts": {
         "start": "tsc && node --inspect ./build/index.js",
-        "dev-start": "ts-node-dev ./src/index.ts",
+        "dev": "ts-node-dev ./src/index.ts",
         "test": "ts-node-dev ./src/services/authenticator.ts"
     },
     "author": "Labenu",
