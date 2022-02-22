@@ -1,4 +1,4 @@
-import connection from "../connection";
+import connection from "./connection";
 import { user } from "../types";
 const nomeTabela = "User_aula_55"
 export const criaUsuarioDb = async(usuario: user) =>{

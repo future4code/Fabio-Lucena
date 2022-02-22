@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import connection from "../connection";
+import connection from "../data/connection";
 import { criaUsuarioDb } from "../data/criaUsuarioDb";
 import { geraId } from "../services/geraId";
 import { geraToken } from "../services/geraToken";
