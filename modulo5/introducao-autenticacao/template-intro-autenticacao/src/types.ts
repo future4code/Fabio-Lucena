@@ -6,6 +6,6 @@ export type user = {
    nickname: string
 }
 
-type AuthenticationData = {
+export type AuthenticationData = {
    id: string
 }

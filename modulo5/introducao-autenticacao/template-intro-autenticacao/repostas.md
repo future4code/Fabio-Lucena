@@ -15,3 +15,6 @@ b)
 
 ## Exercício 3 
 a) Esta nomeando a variável que está vindo do .env, para que a palavra chave, onde o jwt se baseia não esteja disponível para terceiros no código.
+
+## Exercício 7 
+a) Essa linha faz com que toda aquela informação na variável, seja "apelidado" any.

@@ -3,7 +3,7 @@ import connection from "../data/connection";
 import { criaUsuarioDb } from "../data/criaUsuarioDb";
 import { geraId } from "../services/geraId";
 import { geraToken } from "../services/geraToken";
-import { user } from "../types";
+import { AuthenticationData, user } from "../types";
 
 export default async function criaUsuario(req: Request, res: Response): Promise<void> {
    try {
@@ -32,14 +32,16 @@ export default async function criaUsuario(req: Request, res: Response): Promise<
       }
 
       const id: string = geraId()
-      console.log(id)
+      const input: AuthenticationData = {
+         id: id
+      }
 
       const novoUsuario: user = { id, email, password, name, nickname }
-      console.log(novoUsuario)   
+        
 
       await criaUsuarioDb(novoUsuario)
 
-      const token = geraToken(id)   
+      const token = geraToken(input)   
 
       res.status(201).send({ token })
 

@@ -22,6 +22,13 @@ Content-Type: application/json
 
 ###
 
+GET http://localhost:3003/user/profile
+Content-Type: application/json
+
+headers:{ "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDU1Nzk2MjAsImV4cCI6MTY0NTU3OTc0MH0.nR1RM8PQHtYX29Er8fAoki4ywkW2DV6wl97V8ndi2rc" }
+
+###
+
 @id = {{signup.response.body.newUser.id}}
 
 PUT http://localhost:3003/user/edit/{{id}}
