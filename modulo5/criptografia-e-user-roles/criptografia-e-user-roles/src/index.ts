@@ -1,3 +1,4 @@
 import { app } from "./app";
+import createUser from "./endpoints/createUser";
 
-app.get('/user/signup')
+app.post('/user/signup', createUser)

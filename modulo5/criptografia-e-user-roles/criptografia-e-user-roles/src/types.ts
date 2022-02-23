@@ -1,7 +1,7 @@
 export type user = {
     id: string
     email: string
-    password: string
+    hashPassword: string
     name: string
     nickname: string
  }
