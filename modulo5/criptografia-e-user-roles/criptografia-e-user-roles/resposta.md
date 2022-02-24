@@ -3,3 +3,4 @@ a) rounds são como a biblioteca Bcrypt chama o cost e salt é uma string aleat�
 
 ## Exercício 2
 a) Primeiro o cadastro, pois o login o utiliza como parâmetro de comparação.
+d) Não, pois ele utiliza o token gerado no login para a autenticação.

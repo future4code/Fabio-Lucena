@@ -5,7 +5,10 @@ const expiresIn = "1d";
 
 export const generateToken = (input: AuthenticationData): string =>{
     const token = jwt.sign(
-        {id: input.id},
+        {
+            id: input.id,
+            role: input.role
+        },
         process.env.JWT_KEY as string,
         { expiresIn }
     )
@@ -19,7 +22,8 @@ export const compareToken = (token: string) =>{
     const tokenData = jwt.verify(token, process.env.JWT_KEY as string) as any;
 
     const result: AuthenticationData = {
-        id: tokenData.id
+        id: tokenData.id,
+        role: tokenData.role
     }
     console.log(result)
     return result

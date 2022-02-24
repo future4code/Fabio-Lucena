@@ -8,7 +8,7 @@ import { AuthenticationData, user } from "../types";
 
 export default async function createUser(req: Request, res: Response): Promise<void> {
     try {
-        const { name, nickname, email, password } = req.body
+        const { name, nickname, email, password, role } = req.body
         if (!name || !nickname || !email || !password) {
             res.statusCode = 422
             throw new Error("Preencha os campos 'name','nickname', 'password' e 'email'")
@@ -35,10 +35,11 @@ export default async function createUser(req: Request, res: Response): Promise<v
         const hashPassword = await generateHash(password) 
 
         const input: AuthenticationData = {
-            id: id
+            id: id,
+            role: role
         }
 
-        const novoUsuario: user = { id, email, hashPassword, name, nickname }
+        const novoUsuario: user = { id, email, hashPassword, name, nickname, role }
 
         await createUserDb(novoUsuario)
 
