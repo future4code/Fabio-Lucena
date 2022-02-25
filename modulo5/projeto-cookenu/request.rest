@@ -2,10 +2,16 @@ POST  http://localhost:3003/signup
 Content-Type: application/json
 
 {
-    "name": "Alice",
-	"email": "alice@lbn.com",
-	"password": "123456"
+    "name": "Bob",
+	"email": "bob@lbn.com",
+	"password": "654321"
 }
+
+# {
+#     "name": "Alice",
+# 	"email": "alice@lbn.com",
+# 	"password": "123456"
+# }
 
 ###
 # Login
@@ -22,4 +28,10 @@ Content-Type: application/json
 # User Profile
 
 GET http://localhost:3003/user/Profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVlODMzZmRmLTBiZTQtNDZhZS04ZmMxLWIxMjkwMGYyYjRiZSIsImlhdCI6MTY0NTgwMTk2MywiZXhwIjoxNjQ1ODg4MzYzfQ.maE2xLOkek0S-SJk3qTfu5JYKePsiX2UflpOkIS1WsE
+
+###
+# users profiles
+@id = 5a794d6a-8fdc-4af3-9ead-19ded39f8662
+GET http://localhost:3003/user/{{id}}
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVlODMzZmRmLTBiZTQtNDZhZS04ZmMxLWIxMjkwMGYyYjRiZSIsImlhdCI6MTY0NTgwMTk2MywiZXhwIjoxNjQ1ODg4MzYzfQ.maE2xLOkek0S-SJk3qTfu5JYKePsiX2UflpOkIS1WsE
