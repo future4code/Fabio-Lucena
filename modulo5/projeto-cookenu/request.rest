@@ -35,3 +35,15 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVlODMzZmRmLTBiZTQt
 @id = 5a794d6a-8fdc-4af3-9ead-19ded39f8662
 GET http://localhost:3003/user/{{id}}
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVlODMzZmRmLTBiZTQtNDZhZS04ZmMxLWIxMjkwMGYyYjRiZSIsImlhdCI6MTY0NTgwMTk2MywiZXhwIjoxNjQ1ODg4MzYzfQ.maE2xLOkek0S-SJk3qTfu5JYKePsiX2UflpOkIS1WsE
+
+###
+
+# create recipe
+POST  http://localhost:3003/recipe
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVlODMzZmRmLTBiZTQtNDZhZS04ZmMxLWIxMjkwMGYyYjRiZSIsImlhdCI6MTY0NTgwMTk2MywiZXhwIjoxNjQ1ODg4MzYzfQ.maE2xLOkek0S-SJk3qTfu5JYKePsiX2UflpOkIS1WsE
+Content-Type: application/json
+
+{
+	"title": "título da receita",
+	"description": "descrição da receita"
+}
