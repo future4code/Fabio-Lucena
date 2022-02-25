@@ -4,7 +4,7 @@ import { generateId } from "../services/generateId";
 import { generateHash } from "../services/hash";
 import { generateToken } from "../services/token";
 import { AuthenticationData, user } from "../types";
-import { createUserDb } from "./dbFunctions";
+import { createUserDb } from "../data/dbFunctions";
 
 export default async function signUp(req: Request, res: Response): Promise<void> {
     try {
@@ -39,7 +39,7 @@ export default async function signUp(req: Request, res: Response): Promise<void>
             id: id,
         }
 
-        const novoUsuario: user = { id, name, email, hashPassword  }
+        const novoUsuario: user = { id, name, email, hashPassword }
 
         await createUserDb(novoUsuario)
 

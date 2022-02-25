@@ -8,7 +8,7 @@ Content-Type: application/json
 }
 
 ###
-#Login
+# Login
 
 POST http://localhost:3003/login
 Content-Type: application/json
@@ -17,3 +17,9 @@ Content-Type: application/json
 	"email": "alice@lbn.com",
 	"password": "123456"
 }
+
+###
+# User Profile
+
+GET http://localhost:3003/user/Profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVlODMzZmRmLTBiZTQtNDZhZS04ZmMxLWIxMjkwMGYyYjRiZSIsImlhdCI6MTY0NTgwMTk2MywiZXhwIjoxNjQ1ODg4MzYzfQ.maE2xLOkek0S-SJk3qTfu5JYKePsiX2UflpOkIS1WsE

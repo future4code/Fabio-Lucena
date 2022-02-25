@@ -6,46 +6,46 @@ import { user } from "../types";
 
 
 export default async function login(req: Request, res: Response): Promise<void> {
-   try {
+    try {
 
-      const { email, password } = req.body
+        const { email, password } = req.body
 
-      if (!email || !password) {
-         res.statusCode = 422
-         throw new Error("Preencha os campos 'password' e 'email'")
-      }
+        if (!email || !password) {
+            res.statusCode = 422
+            throw new Error("Preencha os campos 'password' e 'email'")
+        }
 
-      if (!req.body.email || req.body.email.indexOf("@") === -1) {
-         throw new Error("Email inválido!");
-       }
+        if (!req.body.email || req.body.email.indexOf("@") === -1) {
+            throw new Error("Email inválido!");
+        }
 
-      const user = await buscaUsuarioPorEmail(email)
+        const user = await buscaUsuarioPorEmail(email)
 
-      const comparePassword = await compareHash(password, user.password)
+        const comparePassword = await compareHash(password, user.password)
 
-      if(!comparePassword){
-          throw new Error("Senha inválida")
-      }
+        if (!comparePassword) {
+            throw new Error("Senha inválida")
+        }
 
-      const userData = {
-          id: user.id  
-      }
+        const userData = {
+            id: user.id
+        }
 
-      const token = generateToken(userData)
+        const token = generateToken(userData)
 
-      res.status(201).send({ token })
+        res.status(201).send({ token })
 
-   } catch (error: any) {
+    } catch (error: any) {
 
-      if (res.statusCode === 200) {
-         res.status(500).send({ message: "Internal server error" })
-      } else {
-         res.send({ message: error.message })
-      }
-   }
+        if (res.statusCode === 200) {
+            res.status(500).send({ message: "Internal server error" })
+        } else {
+            res.send({ message: error.message })
+        }
+    }
 }
 
-export const buscaUsuarioPorEmail = async(email: string): Promise<any> =>{
+export const buscaUsuarioPorEmail = async (email: string): Promise<any> => {
     const result = await connection.raw(`
     SELECT * FROM Cookenu_users WHERE email = '${email}';
     `)

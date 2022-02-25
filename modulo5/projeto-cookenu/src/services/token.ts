@@ -16,3 +16,14 @@ export const generateToken = (input: AuthenticationData) =>{
 
     return token
 }
+
+export const compareToken = (token: string) =>{
+
+    const tokenData = jwt.verify(token, process.env.JWT_KEY as string) as any;
+
+    const result: AuthenticationData = {
+        id: tokenData.id
+    }
+    
+    return result
+} 
