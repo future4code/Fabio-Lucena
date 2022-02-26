@@ -1,0 +1,37 @@
+# @name signup
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "name": "Norman Osbourne", 
+   "nickname": "Green Goblin", 
+   "email": "osbourne@oscorp.com" ,
+   "password": "ihatepeter"
+}
+
+###
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{ 
+   "email": "osbourne@oscorp.com" ,
+   "password": "ihatepeter"
+}
+
+###
+
+GET http://localhost:3003/user/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjOTdlMWQ3LWMxOGYtNGU4My05ZjE3LTE0MmZkODkxOTI2MyIsImlhdCI6MTY0NTU4MzY5OSwiZXhwIjoxNjQ1NjcwMDk5fQ.S69mapZOZ6sGL6LSZyq75mU7cmRyZh-xLrAFufk5aOM
+
+###
+
+@id = {{signup.response.body.newUser.id}}
+
+PUT http://localhost:3003/user/edit/{{id}}
+Content-Type: application/json
+
+{
+   "name": "Harry Osbourne" 
+}
