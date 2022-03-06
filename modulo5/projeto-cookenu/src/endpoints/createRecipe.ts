@@ -25,7 +25,7 @@ export default async function createRecipe(req: Request, res: Response): Promise
 
         if (!comparison) {
             res.statusCode = 401
-            throw new Error("Não autorizado'")
+            throw new Error("Não autorizado")
         }
 
         const date = generateDate()
