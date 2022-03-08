@@ -1,12 +1,14 @@
-import { app } from "./app"
-import { signup } from './endpoints/signup'
-import { createTask } from './endpoints/createTask'
-import { getTaskById } from './endpoints/getTaskById'
-import { login } from './endpoints/login'
+import { app } from "./controller/app"
+import { UserControler } from "./controller/UserController"
 
-app.post('/user/signup', signup)
-app.post('/user/login', login)
+// import { createTask } from './endpoints/createTask'
+// import { getTaskById } from './endpoints/getTaskById'
 
-app.put('/task', createTask)
-app.get('/task/:id', getTaskById)
+const userController = new UserControler
+
+app.post('/signup', userController.signup)
+app.post('/user/login', userController.login)
+
+// app.put('/task', createTask)
+// app.get('/task/:id', getTaskById)
 
