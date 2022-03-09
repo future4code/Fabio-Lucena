@@ -35,3 +35,6 @@ Content-Type: application/json
 }
 
 ###
+@id = df985e3b-efc1-43ce-bb31-ff154219fda0
+DELETE http://localhost:3003/{{id}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzMjgyY2VlLTRlMGMtNDI0Yy1hYzA3LTMwYjY0MWZhNjhjZiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0Njc5OTMzMSwiZXhwIjoxNjQ2ODAwNzcxfQ.xifER-E3JeeJkNMyLYUtDZPxrCpJZRqoMUOvkGI9TQY
