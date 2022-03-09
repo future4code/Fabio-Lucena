@@ -22,3 +22,16 @@ Content-Type: application/json
 
 GET http://localhost:3003/all
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzMjgyY2VlLTRlMGMtNDI0Yy1hYzA3LTMwYjY0MWZhNjhjZiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0Njc5OTMzMSwiZXhwIjoxNjQ2ODAwNzcxfQ.xifER-E3JeeJkNMyLYUtDZPxrCpJZRqoMUOvkGI9TQY
+
+###
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+	"name": "Guaribinha Junior",
+	"email": "guari@lab.com",
+	"password": "123456",
+	"role": "NORMAL"
+}
+
+###

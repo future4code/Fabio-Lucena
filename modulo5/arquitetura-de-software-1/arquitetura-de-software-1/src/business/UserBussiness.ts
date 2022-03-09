@@ -78,4 +78,22 @@ export class UserBusiness {
 
         return users
     }
+
+    deleteUser = async (id: string, token: string) => {
+        
+        const comparison = authenticator.getTokenData(token);
+
+        if (!comparison) {
+            throw new Error("Não autorizado")
+        }
+
+        if(comparison.role !== "ADMIN"){
+            throw new Error("Apenas administradores podem deletar usuários!")
+        }
+
+        return await UserDB.deleteUser(id)
+
+
+    }
+
 }

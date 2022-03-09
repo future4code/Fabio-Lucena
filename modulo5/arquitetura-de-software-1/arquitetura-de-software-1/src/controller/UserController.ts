@@ -51,8 +51,22 @@ export class UserControler {
             res.status(200).send({ users })
 
         } catch (error: any) {
-
+            res.status(400).send({ error: error.message });
         }
+    }
+
+    deleteUser = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const id = req.params.id
+            const token: any = req.headers.authorization
+            
+            await userBusiness.deleteUser(id, token)
+
+            res.status(200).send({ message: "Usuário apagado com sucesso!" })
+
+        } catch (error: any) {
+            res.status(400).send({ error: error.message });
+        } 
     }
 
 }

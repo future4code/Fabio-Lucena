@@ -9,6 +9,7 @@ const userController = new UserControler
 app.post('/signup', userController.signup)
 app.post('/login', userController.login)
 app.get('/all', userController.getAllUsers)
+app.delete('/:id', userController.deleteUser)
 
 // app.put('/task', createTask)
 // app.get('/task/:id', getTaskById)

@@ -52,4 +52,13 @@ export class UserDatabase extends BaseDatabase {
         }
     }
 
+    deleteUser = async(id: string): Promise<any> =>{
+        try {
+            await UserDatabase.connection("User_Arq").del().where({ id })
+        } catch (error: any) {
+            throw new Error(error.sqlMessage);
+        }
+        
+    }
+
 }
