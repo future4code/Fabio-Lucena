@@ -1,10 +1,11 @@
 import { hash } from "../../services/hashManager";
-import { insertUser } from "../../data/user/insertUser";
+// import { insertUser } from "../../data/user/insertUser";
 import { userData } from "../../model/user";
 import { generateToken } from "../../services/authenticator";
 import { generateId } from "../../services/idGenerator";
 import { inputDTO } from "../../controller/user/UserController";
 import UserData from "../../data/user/UserData";
+import { compare } from "bcryptjs";
 
 const userDB = new UserData
 
@@ -35,7 +36,7 @@ export default class UserBusiness{
          id: generateId()
       }
    
-      await insertUser(newUser)
+      await userDB.insertUser(newUser)
    
       const token: string = generateToken({
          id: newUser.id,
@@ -44,6 +45,34 @@ export default class UserBusiness{
    
       return token
    
+   }
+
+   loginBusiness = async (
+      email: string,
+      password: string
+   ) => {
+      if (!email || !password) {
+         throw new Error("'email' e 'senha' são obrigatórios")
+      }
+   
+      const user = await userDB.selectUserByEmail(email)
+   
+      if (!user) {
+         throw new Error("Usuário não encontrado ou senha incorreta")
+      }
+   
+      const passwordIsCorrect: boolean = await compare(password, user.password)
+   
+      if (!passwordIsCorrect) {
+         throw new Error("Usuário não encontrado ou senha incorreta")
+      }
+   
+      const token: string = generateToken({
+         id: user.id,
+         role: user.role
+      })
+   
+      return token
    }
 } 
 

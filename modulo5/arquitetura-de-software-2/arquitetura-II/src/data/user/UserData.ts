@@ -21,4 +21,8 @@ export default class UserData extends BaseDatabase{
            throw new Error(error.slqMessage)
         }
      }
+
+     insertUser = async(user: user) => {
+        await BaseDatabase.connection.insert(user).into('to_do_list_users')
+     }
 }

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import UserBusiness, { signupBusiness } from "../../business/user/UserBusiness";
+import UserBusiness from "../../business/user/UserBusiness";
 import { USER_ROLES } from "../../model/user";
 
 
@@ -36,6 +36,25 @@ export default class UserController {
                token
             })
 
+      } catch (error: any) {
+         res.status(400).send(error.message)
+      }
+   }
+
+   login = async (
+      req: Request,
+      res: Response
+   ): Promise<void> => {
+      try {
+         const { email, password } = req.body
+   
+         const token: string = await this.userBusiness.loginBusiness(email, password)
+   
+         res.send({
+            message: "Usuário logado!",
+            token
+         })
+   
       } catch (error: any) {
          res.status(400).send(error.message)
       }
