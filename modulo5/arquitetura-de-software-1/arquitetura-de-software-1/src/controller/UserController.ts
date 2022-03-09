@@ -43,4 +43,16 @@ export class UserControler {
         }
     }
 
+    getAllUsers = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const token: any = req.headers.authorization
+            const users = await userBusiness.getAllUsers(token)
+
+            res.status(200).send({ users })
+
+        } catch (error: any) {
+
+        }
+    }
+
 }

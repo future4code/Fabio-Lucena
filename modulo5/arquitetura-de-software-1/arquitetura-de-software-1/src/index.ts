@@ -7,7 +7,8 @@ import { UserControler } from "./controller/UserController"
 const userController = new UserControler
 
 app.post('/signup', userController.signup)
-app.post('/user/login', userController.login)
+app.post('/login', userController.login)
+app.get('/all', userController.getAllUsers)
 
 // app.put('/task', createTask)
 // app.get('/task/:id', getTaskById)

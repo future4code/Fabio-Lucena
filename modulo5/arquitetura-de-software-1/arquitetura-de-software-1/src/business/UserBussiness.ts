@@ -7,12 +7,11 @@ import { user, USER_ROLES } from "../types/user"
 const UserDB = new UserDatabase
 const hashManager = new HashManager
 const idGenerator = new IdGenerator
+const authenticator = new Authenticator
 
 export class UserBusiness {
 
-    signup = async (
-        name: string, email: string, password: string, role: USER_ROLES
-    ) => {
+    signup = async (name: string, email: string, password: string, role: USER_ROLES) => {
 
         if (!name || !email || !password || !role) {
             throw new Error('Preencha os campos "name","nickname", "email" e "password"')
@@ -40,10 +39,7 @@ export class UserBusiness {
         return token
     }
 
-    login = async (
-        email: string,
-        password: string
-    ) => {
+    login = async (email: string, password: string) => {
 
         if (!email || !password) {
             throw new Error("'email' e 'senha' são obrigatórios")
@@ -69,5 +65,17 @@ export class UserBusiness {
         })
 
         return token
+    }
+
+    getAllUsers = async (token: string) => {
+        const comparison = authenticator.getTokenData(token);
+
+        if (!comparison) {
+            throw new Error("Não autorizado")
+        }
+
+        const users = await UserDB.getUsers()
+
+        return users
     }
 }

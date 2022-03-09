@@ -7,3 +7,18 @@ Content-Type: application/json
 	"password": "theboss",
 	"role": "ADMIN"
 }
+
+###
+
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+	"email": "michael@dundermifflin.com",
+	"password": "theboss"
+}
+
+###
+
+GET http://localhost:3003/all
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzMjgyY2VlLTRlMGMtNDI0Yy1hYzA3LTMwYjY0MWZhNjhjZiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0Njc5OTMzMSwiZXhwIjoxNjQ2ODAwNzcxfQ.xifER-E3JeeJkNMyLYUtDZPxrCpJZRqoMUOvkGI9TQY
