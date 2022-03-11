@@ -1,6 +1,8 @@
-import { connection } from "./index"
+import { connection } from "./data/connection";
 
-connection
+
+
+   connection
    .raw(`
       CREATE TABLE IF NOT EXISTS labook_users(
          id VARCHAR(255) PRIMARY KEY,
@@ -21,3 +23,4 @@ connection
    `)
    .then(console.log)
    .catch(console.log)
+
