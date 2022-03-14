@@ -16,3 +16,19 @@ Content-Type: application/json
     "password": "123456"
 }
 
+###
+
+POST http://localhost:3003/posts/create
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM4NmRjOTBkLTI5OTAtNGNmMS04NzQ3LWNjNTRjOTFjZmZmNiIsImlhdCI6MTY0NzIyNjY3MSwiZXhwIjoxNjQ3MjI4NDcxfQ.xFdATPsi8obbrOEWLM2J6zDvJ71kzJJ1FbO43Wu_I-I
+Content-Type: application/json
+
+{
+    "photo": "https://images.kabum.com.br/produtos/fotos/129451/processador-amd-ryzen-9-5950x-cache-72mb-3-4ghz-4-9ghz-max-turbo-am4-100-100000065box_1602603581_g.jpg",
+    "description": "Toma Ryzen 5 pra você 2",
+    "type": "normal"
+}
+
+###
+@id = 2405b7c4-e35e-47cb-b046-32df305f9cfe
+GET http://localhost:3003/posts/{{id}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM4NmRjOTBkLTI5OTAtNGNmMS04NzQ3LWNjNTRjOTFjZmZmNiIsImlhdCI6MTY0NzIzMTQ1NywiZXhwIjoxNjQ3MjMzMjU3fQ.5129u9OertQWnl3X97BYEUekzXqE51_-FfOMB5FBNF8

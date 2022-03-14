@@ -1,5 +1,4 @@
 /**************************** IMPORTS ******************************/
-
 import express, { Express, Request, Response } from "express"
 import cors from "cors"
 import knex from "knex"
@@ -15,6 +14,10 @@ import UserDatabase from "./data/UserDatabase"
 import HashManager from "./services/HashManager"
 import IdGenerator from "./services/IdGenerator"
 import Authenticator from "./services/Authenticator"
+import PostController from "./controller/PostController"
+import PostBusiness from "./business/PostBusiness"
+import PostData from "./data/PostData"
+import generateDate from "./services/generateDate"
 
 const userController = new UserController(new UserBusiness(
    new UserDatabase(),
@@ -23,92 +26,19 @@ const userController = new UserController(new UserBusiness(
    new Authenticator()
    ))
 
+const postController = new PostController(new PostBusiness(
+   new PostData(),
+   new Authenticator(),
+   new IdGenerator(),
+   new generateDate()
+   ))   
 
+/**************************** ENDPOINTS ******************************/
 app.post('/users/signup', userController.signup) 
 app.post('/users/login', userController.login)
 
+app.post('/posts/create', postController.createPost)
+app.get('/posts/:id', postController.getPostById)
 
 
 
-/**************************** CONFIG ******************************/
-
-/**************************** TYPES ******************************/
-
-/**************************** SERVICES ******************************/
-
-/**************************** ENDPOINTS ******************************/
-
-
- 
-
-// app.post('/posts/create', async (req: Request, res: Response) => {
-//    try {
-//       let message = "Success!"
-
-//       const { photo, description, type } = req.body
-
-//       const token: string = req.headers.authorization as string
-
-//       const tokenData: authenticationData = getTokenData(token)
-
-//       const id: string = generateId()
-
-//       await connection("labook_posts")
-//          .insert({
-//             id,
-//             photo,
-//             description,
-//             type,
-//             author_id: tokenData.id
-//          })
-
-//       res.status(201).send({ message })
-
-//    } catch (error) {
-//       let message = error.sqlMessage || error.message
-//       res.statusCode = 400
-
-//       res.send({ message })
-//    }
-// })
-
-// app.get('/posts/:id', async (req: Request, res: Response) => {
-//    try {
-//       let message = "Success!"
-
-//       const { id } = req.params
-
-//       const queryResult: any = await connection("labook_posts")
-//          .select("*")
-//          .where({ id })
-
-//       if (!queryResult[0]) {
-//          res.statusCode = 404
-//          message = "Post not found"
-//          throw new Error(message)
-//       }
-
-//       const post: post = {
-//          id: queryResult[0].id,
-//          photo: queryResult[0].photo,
-//          description: queryResult[0].description,
-//          type: queryResult[0].type,
-//          createdAt: queryResult[0].created_at,
-//          authorId: queryResult[0].author_id,
-//       }
-
-//       res.status(200).send({ message, post })
-
-//    } catch (error) {
-//       let message = error.sqlMessage || error.message
-//       res.statusCode = 400
-
-//       res.send({ message })
-//    }
-// })
-
-/**************************** SERVER INIT ******************************/
-
-// app.listen(3003, () => {
-//    console.log("Server running on port 3003")
-// })

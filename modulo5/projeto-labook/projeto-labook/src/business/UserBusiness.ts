@@ -50,7 +50,7 @@ export default class UserBusiness {
 
     }
 
-    login = async(input: loginInputDTO)=>{
+    login = async(input: loginInputDTO): Promise<string>=>{
         
         if (!input.email || !input.password) {
            
