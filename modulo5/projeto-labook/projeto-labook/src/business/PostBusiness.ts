@@ -1,5 +1,6 @@
 import { postIdDTO, postInputDTO } from "../controller/PostController"
 import PostData from "../data/PostData";
+import { CustomError } from "../error/CustomError";
 import { authenticationData } from "../model/Authentication";
 import { post } from "../model/PostTypes";
 import Authenticator from "../services/Authenticator";
@@ -12,23 +13,22 @@ export default class PostBusiness {
         private postDB: PostData,
         private authenticator: Authenticator,
         private idGenerator: IdGeneretor,
-        private generateDate: generateDate
     ) { }
 
     createPost = async (input: postInputDTO, token: string): Promise<any> => {
 
         if (!input.photo || !input.description || !input.type) {
-            throw new Error("'photo', 'description' and 'type' must be provided");
+            throw new CustomError(400, "'photo', 'description' and 'type' must be provided");
         }
 
         if (!token) {
-            throw new Error("Unauthorized");
+            throw new CustomError(404, "Unauthorized");
         }
 
         const tokenData: authenticationData = this.authenticator.getTokenData(token)
 
         if (!tokenData) {
-            throw new Error("Unauthorized")
+            throw new CustomError(404, "Unauthorized")
         }
 
         const id: string = this.idGenerator.generateId()
@@ -48,13 +48,13 @@ export default class PostBusiness {
     getPostById = async (postInput: postIdDTO): Promise<any> => {
 
         if (!postInput.id || !postInput.token) {
-            throw new Error("'id' and 'token' must be provided");
+            throw new CustomError(400, "'id' and 'token' must be provided");
         }
 
         const tokenData: authenticationData = this.authenticator.getTokenData(postInput.token)
 
         if (!tokenData) {
-            throw new Error("Unauthorized")
+            throw new CustomError(401, "Unauthorized")
         }
 
         const queryResult: any = await this.postDB.postById(postInput.id)
@@ -62,7 +62,7 @@ export default class PostBusiness {
         if (!queryResult[0]) {
 
             const message = "Post not found"
-            throw new Error(message)
+            throw new CustomError(404, message)
         }
 
         const post: post = {

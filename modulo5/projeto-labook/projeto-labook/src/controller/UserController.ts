@@ -16,7 +16,7 @@ export type loginInputDTO = {
 export default class UserController {
     constructor(
         private userBusiness: UserBusiness,
-        ) { }
+    ) { }
 
     signup = async (req: Request, res: Response) => {
         try {
@@ -34,14 +34,7 @@ export default class UserController {
 
 
         } catch (error: any) {
-            switch (error.message) {
-                case '"name", "email" and "password" must be provided':
-
-                    break;
-
-                default:
-                    break;
-            }
+            res.status(400).send(error.message)
         }
     }
 
@@ -56,14 +49,11 @@ export default class UserController {
             }
 
             const token = await this.userBusiness.login(input)
-           
+
             res.status(200).send({ message, token })
 
         } catch (error: any) {
-            let message = error.sqlMessage
-            res.statusCode = 400
-
-            res.send({ message })
+            res.status(error.code || 400).send(error.message)
         }
     }
 }

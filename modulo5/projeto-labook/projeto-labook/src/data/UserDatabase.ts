@@ -3,18 +3,18 @@ import BaseDatabase from "./BaseDatabase";
 
 export default class UserDatabase extends BaseDatabase {
     signup = async (user: user): Promise<void> => {
-       try {
-        await UserDatabase.connection('labook_users')
-        .insert({
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            password: user.password
-        })
-       } catch (error: any) {
-        throw new Error("Error creating user in database")
-       }
-        
+        try {
+            await UserDatabase.connection('labook_users')
+                .insert({
+                    id: user.id,
+                    name: user.name,
+                    email: user.email,
+                    password: user.password
+                })
+        } catch (error: any) {
+            throw new Error("Error creating user in database")
+        }
+
     }
 
     userByEmail = async (email: string): Promise<any> => {

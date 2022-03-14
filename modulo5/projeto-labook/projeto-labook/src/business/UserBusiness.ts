@@ -4,6 +4,7 @@ import IdGenerator from "../services/IdGenerator";
 import Authenticator from "../services/Authenticator";
 import { user } from "../model/UserTypes";
 import HashManager from "../services/HashManager";
+import { CustomError } from "../error/CustomError";
 
 
 export default class UserBusiness {
@@ -12,23 +13,23 @@ export default class UserBusiness {
         private hashManager: HashManager,
         private idGenerator: IdGenerator,
         private authenticator: Authenticator
-        ){}
+    ) { }
 
     signup = async (input: inputDTO): Promise<string> => {
 
         if (!input.name || !input.email || !input.password) {
             const message = '"name", "email" and "password" must be provided'
-            throw new Error(message)
+            throw new CustomError(400, message)
         }
 
         if (input.email.indexOf("@") === -1) {
-            throw new Error("Email inválido!");
+            throw new CustomError(400, "Inválid email!");
         }
 
         const user: any = await this.userDB.userByEmail(input.email)
 
-        if(user){
-            throw new Error("Email already registered")
+        if (user) {
+            throw new CustomError(409, "Email already registered")
         }
 
         const id: string = this.idGenerator.generateId()
@@ -50,20 +51,20 @@ export default class UserBusiness {
 
     }
 
-    login = async(input: loginInputDTO): Promise<string>=>{
-        
+    login = async (input: loginInputDTO): Promise<string> => {
+
         if (!input.email || !input.password) {
-           
+
             const message = '"email" and "password" must be provided'
-            throw new Error(message)
+            throw new CustomError(400, message)
         }
 
         const queryResult: any = await this.userDB.userByEmail(input.email)
 
         if (!queryResult) {
-            
-            let message = "Invalid credentials"
-            throw new Error(message)
+
+            let message = "User Not Found"
+            throw new CustomError(404, message)
         }
 
         const user: user = {
@@ -76,8 +77,7 @@ export default class UserBusiness {
         const passwordIsCorrect: boolean = await this.hashManager.compare(input.password, user.password)
 
         if (!passwordIsCorrect) {
-            
-            throw new Error("Invalid credentials")
+            throw new CustomError(401, "Invalid credentials")
         }
 
         const token: string = this.authenticator.generateToken({
