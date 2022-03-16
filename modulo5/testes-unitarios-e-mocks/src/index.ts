@@ -39,6 +39,7 @@ export const performAttack = (
         defender.life -= attacker.strength - defender.defense 
     }
     
+    console.log(defender.life)
 
 }
 
