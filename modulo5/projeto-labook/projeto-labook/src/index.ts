@@ -10,12 +10,7 @@ import PostController from "./controller/PostController"
 import PostBusiness from "./business/PostBusiness"
 import PostData from "./data/PostData"
 
-const userController = new UserController(new UserBusiness(
-   new UserDatabase(),
-   new HashManager(),
-   new IdGenerator(),
-   new Authenticator()
-))
+const userController = new UserController()
 
 const postController = new PostController(new PostBusiness(
    new PostData(),

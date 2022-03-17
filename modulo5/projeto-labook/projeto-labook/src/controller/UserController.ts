@@ -1,22 +1,16 @@
 import { Request, Response } from "express"
-import UserBusiness from "../business/UserBusiness"
-
-export type inputDTO = {
-    name: string,
-    email: string,
-    password: string
-}
-
-export type loginInputDTO = {
-    email: string,
-    password: string
-}
-
+import UserBusiness, { inputDTO, loginInputDTO } from "../business/UserBusiness"
+import UserDatabase from "../data/UserDatabase"
 
 export default class UserController {
+    private userBusiness: UserBusiness
+
     constructor(
-        private userBusiness: UserBusiness,
-    ) { }
+       
+    ) {
+        this.userBusiness = new UserBusiness(new UserDatabase)
+     }
+
 
     signup = async (req: Request, res: Response) => {
         try {

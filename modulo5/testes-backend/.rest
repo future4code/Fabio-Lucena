@@ -1,0 +1,26 @@
+### CADASTRO
+
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+	"name": "Alice",
+	"email": "alice@lbn.com",
+	"password": "123456",
+   "role":"ADMIN"
+}
+
+### LOGIN
+
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+	"email": "alice@lbn.com",
+	"password": "123456"
+}
+
+###
+@id = c3282cee-4e0c-424c-ac07-30b641fa68cf
+GET http://localhost:3003/users/profile/{{id}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUyN2E2NWFhLWNhZmMtNGY0Zi1hYjEyLWRjNWJkMTEwMDNmNyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NzQ2MzMzOSwiZXhwIjoxNjQ3NDY0NTM5fQ.q7IqFsnx-V1ZHgaq0MI2QCVaKQeX9oGN9ZwwS9Yc2ts

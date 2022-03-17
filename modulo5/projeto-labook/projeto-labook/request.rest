@@ -1,0 +1,31 @@
+POST http://localhost:3003/users/signup 
+Content-Type: application/json
+
+{
+    "name": "Guariba Senior", 
+    "email": "guaribasenior@lab.com", 
+    "password": "123456"
+}
+
+### 
+POST http://localhost:3003/users/login 
+Content-Type: application/json
+
+{
+    "email": "guariba@lab.com",
+     "password": "123456"
+}
+
+###
+
+POST http://localhost:3003/posts/create
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM4NmRjOTBkLTI5OTAtNGNmMS04NzQ3LWNjNTRjOTFjZmZmNiIsImlhdCI6MTY0NzIzMzQ1NiwiZXhwIjoxNjQ3MjM1MjU2fQ.2MUlKIIGVTSYHE2U93_kpEqSJTWrLCnoIVz2WCemLb0 Content-Type: application/json
+
+{
+"photo": "https://images.kabum.com.br/produtos/fotos/129451/processador-amd-ryzen-9-5950x-cache-72mb-3-4ghz-4-9ghz-max-turbo-am4-100-100000065box_1602603581_g.jpg", "description": "Toma Ryzen 5 pra você 3", "type": "normal"
+}
+
+### 
+@id = 2405b7c4-e35e-47cb-b046-32df305f9cfe 
+GET http://localhost:3003/posts/{{id}} 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI0YjM3MjJjLTRjMjYtNGRmYi05YWEzLWM3MDc3ZTg4Nzg1MSIsImlhdCI6MTY0NzU0MTk1MiwiZXhwIjoxNjQ3NTQzNzUyfQ.Izo1xYgszOCcn9fBsBJ_15gt9dRCbJl4qnC8LAqBkec
