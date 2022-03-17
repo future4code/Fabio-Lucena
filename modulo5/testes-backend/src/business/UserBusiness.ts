@@ -88,7 +88,7 @@ export class UserBusiness {
          throw new CustomError(error.statusCode, error.message)
       }
    }
-   public async getUserById(input: userIdDTO) {
+   public async getUserById(input: any) {
 
       try {
          if (!input.id || !input.token) {

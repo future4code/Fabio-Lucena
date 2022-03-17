@@ -39,7 +39,7 @@ export class UserController {
       try {
          const id = req.params.id
          const token: any = req.headers.authorization
-         const input: userIdDTO = {id: id, token: token}
+         const input = {id: id, token: token}
          const result = await userBusiness.getUserById(input)
          res.status(200).send(result);
       } catch (error) {
