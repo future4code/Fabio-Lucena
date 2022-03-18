@@ -1,0 +1,3 @@
+## Exercício 4
+a) Modelagem em si não, apenas ajustes na função.
+b) Herdar o conection de uma classe abstrata acima de UserData, bem como pequenos detalhes, como nome da tabela, etc...
