@@ -1,0 +1,57 @@
+### Teste Cria Competição 100m rasos
+POST http://localhost:3000/competition/create
+Content-Type: application/json
+
+{
+    "name": "100m Rasos de Montreal",
+    "modality": "100M RASOS"
+}
+
+#### Teste Cria competição dardos
+POST http://localhost:3000/competition/create
+Content-Type: application/json
+
+{
+    "name": "Lançamento de dardos da Mongólia",
+    "modality": "LANÇAMENTO DE DARDOS"
+}
+
+### Inserir um atleta e seu tempo numa competição de 100m rasos
+@id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
+POST http://localhost:3000/competition/meter/{{id}}
+Content-Type: application/json
+
+{
+    "athlete": "Magnolia Johnson",
+    "time": "10.58"
+}
+
+### Inserir outra pessoa em uma competição de 100m rasos
+### Inserir um atleta e seu tempo numa competição de 100m rasos
+@id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
+POST http://localhost:3000/competition/meter/{{id}}
+Content-Type: application/json
+
+{
+    "athlete": "Isadora Theodore",
+    "time": "10.60"
+}
+
+### Inserir um atleta e seu tempo numa competição de 100m rasos
+@id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
+POST http://localhost:3000/competition/meter/{{id}}
+Content-Type: application/json
+
+{
+    "athlete": "Evelyn Mathew",
+    "time": "10.61"
+}
+### Inserir um atleta e seu tempo numa competição de 100m rasos
+@id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
+POST http://localhost:3000/competition/meter/{{id}}
+Content-Type: application/json
+
+{
+    "athlete": "Anna Schevshenko",
+    "time": "10.58"
+}
