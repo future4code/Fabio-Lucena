@@ -58,8 +58,28 @@ export default class CompetitionBusiness {
 
            
 
-        } catch (error) {
+        } catch (error: any) {
+            throw new CustomError(error.statusCode, error.message)
+        }
+    }
+
+    competitionRanking = async (id: string) => {
+        try {
+            if(!id){
+                throw new CustomError(422, "Missin input")
+            }
+
+            const modality = await this.competitionDatabase.verifyCompetitionById(id)
+            console.log(modality)
+            if(modality.modality === "100M RASOS"){
+                const ranking = await this.competitionDatabase.meterDashRanking(id)
+                return ranking
+            }
+
             
+
+        } catch (error: any) {
+            throw new CustomError(error.statusCode, error.message)
         }
     }
 

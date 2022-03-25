@@ -26,7 +26,7 @@ Content-Type: application/json
 }
 
 ### Inserir um atleta e seu tempo numa competição de 100m rasos
-@id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
+# @id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
 POST http://localhost:3000/competition/meter/{{id}}
 Content-Type: application/json
 
@@ -36,7 +36,7 @@ Content-Type: application/json
 }
 
 ### Inserir outra pessoa em uma competição de 100m rasos
-@id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
+# @id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
 POST http://localhost:3000/competition/meter/{{id}}
 Content-Type: application/json
 
@@ -46,7 +46,7 @@ Content-Type: application/json
 }
 
 ### Inserir outra pessoa em uma competição de 100m rasos
-@id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
+# @id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
 POST http://localhost:3000/meterDash/{{id}}
 Content-Type: application/json
 
@@ -56,7 +56,7 @@ Content-Type: application/json
 }
 
 ### Inserir um atleta e seu tempo numa competição de 100m rasos
-@id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
+# @id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
 POST http://localhost:3000/competition/meter/{{id}}
 Content-Type: application/json
 
@@ -65,8 +65,8 @@ Content-Type: application/json
     "time": "10.61"
 }
 ### Inserir um atleta e seu tempo numa competição de 100m rasos
-@id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
-POST http://localhost:3000/competition/meter/{{id}}
+@id = de0e37c0-a3ed-4a79-b50f-969094843f36
+POST http://localhost:3000/meterDash/{{id}}
 Content-Type: application/json
 
 {
@@ -74,8 +74,8 @@ Content-Type: application/json
     "time": "10.58"
 }
 
-### Inserir um atleta e seu tempo numa competição de lançamewnto de dardos
-@id = 8ce43825-6a23-495f-bba6-db2ae187cb6e
+### Inserir um atleta e seu resultado numa competição de lançamewnto de dardos
+# @id = 8ce43825-6a23-495f-bba6-db2ae187cb6e
 POST http://localhost:3000/javelinThrow/{{id}}
 Content-Type: application/json
 
@@ -84,8 +84,8 @@ Content-Type: application/json
     "distance": "45.64"
 }
 
-### Inserir mais um atleta e seu tempo numa competição de lançamewnto de dardos
-@id = 8ce43825-6a23-495f-bba6-db2ae187cb6e
+### Inserir mais um atleta e seu resultado numa competição de lançamewnto de dardos
+# @id = 8ce43825-6a23-495f-bba6-db2ae187cb6e
 POST http://localhost:3000/javelinThrow/{{id}}
 Content-Type: application/json
 
@@ -101,3 +101,7 @@ Content-Type: application/json
 {
     "id": "de0e37c0-a3ed-4a79-b50f-969094843f36"
 }
+
+### Ranking de 100m Rasos
+@id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
+get http://localhost:3000/competition/rankings/{{id}}

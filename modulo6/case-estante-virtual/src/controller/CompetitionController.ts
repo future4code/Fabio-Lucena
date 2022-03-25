@@ -41,5 +41,15 @@ export default class CompetitionController {
         }
     }
 
+    competitionRanking = async (req: Request, res: Response) => {
+        const id = req.params.id
+        try {
+            const ranking = await this.competitionBusiness.competitionRanking(id)
+
+            res.status(200).send({ ranking })
+        } catch (error) {
+            
+        }
+    }
 
 }

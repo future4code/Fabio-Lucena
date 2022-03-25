@@ -6,4 +6,5 @@ export default interface CompetitionRepository{
     verifyCompetitionActive (id: string): Promise<any>
     verifyCompetitionById (id: string): Promise<any>
     endCompetition (id: string): Promise<void>
+    meterDashRanking (id: string): Promise<any>
 }

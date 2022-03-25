@@ -69,5 +69,20 @@ export default class CompetitionDatabase extends BaseDatabase implements Competi
         }
     }
 
+    meterDashRanking = async (id: string): Promise<any> => {
+        try {
+
+            const result = await this.getConnection().raw(`
+            SELECT athlete, time, competition_id FROM Case1_Competitions RIGHT JOIN Case1_Dash ON Case1_Competitions.id = Case1_Dash.competition_id
+            ORDER BY time;
+            `)
+                
+            return result[0].filter((a:any)=>{return a.competition_id === id}).map((a:any)=>a)
+
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message);
+        }
+    }
+
 
 }

@@ -7,3 +7,4 @@ const competitionController = new CompetitionController();
 
 competitionRouter.post("/create", competitionController.createComptetition)
 competitionRouter.put("/end", competitionController.endCompetition);
+competitionRouter.get("/rankings/:id", competitionController.competitionRanking)

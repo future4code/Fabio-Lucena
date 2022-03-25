@@ -21,7 +21,7 @@ export default class MeterDashBusiness{
             }
            
             const active = await this.meterDashDatabase.verifyCompetitionActive(input.competition_id)
-            
+            console.log(active)
             if (!active || active === 0) {
                 throw new CustomError(400, "A competição já foi encerrada")
             }
