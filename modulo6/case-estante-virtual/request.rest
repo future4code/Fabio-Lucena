@@ -27,7 +27,6 @@ Content-Type: application/json
 }
 
 ### Inserir outra pessoa em uma competição de 100m rasos
-### Inserir um atleta e seu tempo numa competição de 100m rasos
 @id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
 POST http://localhost:3000/competition/meter/{{id}}
 Content-Type: application/json
@@ -35,6 +34,16 @@ Content-Type: application/json
 {
     "athlete": "Isadora Theodore",
     "time": "10.60"
+}
+
+### Inserir outra pessoa em uma competição de 100m rasos
+@id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
+POST http://localhost:3000/meterDash/{{id}}
+Content-Type: application/json
+
+{
+    "athlete": "Thelma Rush",
+    "time": "10.623"
 }
 
 ### Inserir um atleta e seu tempo numa competição de 100m rasos

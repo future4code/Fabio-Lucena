@@ -29,25 +29,6 @@ export default class CompetitionController {
         }
 
     }
-
-    insertMeterDash = async (req: Request, res: Response) => {
-        const input: meterDashDTO = {
-            athlete: req.body.athlete,
-            time: req.body.time,
-            competition_id: req.params.id
-        }
-
-        try {
-
-            const message = await this.competitionBusiness.insertMeterDash(input)
-
-            res.status(200).send({ message })
-
-        } catch (error: any) {
-            res.status(error.statusCode || 400).send({ error: error.message });
-        }
-    }
-
   
 
 }
