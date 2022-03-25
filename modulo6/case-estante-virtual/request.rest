@@ -7,6 +7,15 @@ Content-Type: application/json
     "modality": "100M RASOS"
 }
 
+### Teste Cria Competição 100m rasos
+POST http://localhost:3000/competition/create
+Content-Type: application/json
+
+{
+    "name": "100m Rasos do Japão",
+    "modality": "100M RASOS"
+}
+
 #### Teste Cria competição dardos
 POST http://localhost:3000/competition/create
 Content-Type: application/json
@@ -83,4 +92,12 @@ Content-Type: application/json
 {
     "athlete": "Evelyn Mathew",
     "distance": "44.64"
+}
+
+### Encerra competição
+PUT http://localhost:3000/competition/end
+Content-Type: application/json
+
+{
+    "id": "de0e37c0-a3ed-4a79-b50f-969094843f36"
 }

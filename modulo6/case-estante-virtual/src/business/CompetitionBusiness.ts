@@ -42,4 +42,25 @@ export default class CompetitionBusiness {
         }
     }
 
+    endCompetition = async(id: string) =>{
+        try {
+            if(!id){
+                throw new CustomError(422, "Missin input")
+            }
+
+            const verifyId = await this.competitionDatabase.verifyCompetitionById(id)
+
+            if(!verifyId){
+                throw new CustomError(400, "Competition not found")
+            }
+
+            await this.competitionDatabase.endCompetition(id)
+
+           
+
+        } catch (error) {
+            
+        }
+    }
+
 }

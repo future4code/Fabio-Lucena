@@ -26,13 +26,43 @@ export default class CompetitionDatabase extends BaseDatabase implements Competi
 
     public verifyCompetitionActive = async (id: string): Promise<any> => {
         try {
-            
+
             const result = await this.getConnection()
-            .select("*")
-            .from("Case1_Competitions")
-            .where({id})
+                .select("*")
+                .from("Case1_Competitions")
+                .where({ id })
 
             return Number(result[0].status)
+
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message);
+        }
+    }
+
+    public verifyCompetitionById = async (id: string): Promise<any> => {
+        try {
+
+            const result = await this.getConnection()
+                .select("*")
+                .from("Case1_Competitions")
+                .where({ id })
+
+            return result[0]
+
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message);
+        }
+    }
+
+    endCompetition = async (id: string): Promise<void> => {
+        try {
+
+            await this.getConnection()
+                .into("Case1_Competitions")
+                .where({ id })
+                .update({
+                    status: false
+                })
 
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message);

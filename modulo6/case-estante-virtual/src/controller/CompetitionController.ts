@@ -29,6 +29,17 @@ export default class CompetitionController {
         }
 
     }
-  
+
+    endCompetition = async (req: Request, res: Response) => {
+        const id = req.body.id
+        try {
+            await this.competitionBusiness.endCompetition(id)
+
+            res.status(200).send("Competição encerrada!")
+        } catch (error: any) {
+            res.status(error.statusCode || 400).send({ error: error.message });
+        }
+    }
+
 
 }
