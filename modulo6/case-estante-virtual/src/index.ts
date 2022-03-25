@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import {AddressInfo} from "net";
 import express from "express";
 import { competitionRouter } from "./routes/CompetitionRouter";
+import { javelinRouter } from "./routes/JavelinRouter";
 
 dotenv.config();
 const app = express();
@@ -9,6 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/competition", competitionRouter);
+app.use("/javelinThrow", javelinRouter)
 // app.use("/band")
 
 const server = app.listen(3000, () => {

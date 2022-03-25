@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import CompetitionBusiness from "../business/CompetitionBusiness";
 import CompetitionDatabase from "../data/CompetitionDatabase";
 import { CompetitionDTO } from "../model/Competition";
+import { JavelinDTO } from "../model/Javelin";
 import { meterDashDTO } from "../model/MeterDash";
 
 // const competitionBusiness = new (CompetitionBusiness)
@@ -23,8 +24,8 @@ export default class CompetitionController {
             await this.competitionBusiness.createCompetition(input)
 
             res.status(200).send("Competição criada com sucesso!")
-        } catch (error) {
-
+        } catch (error: any) {
+            res.status(error.statusCode || 400).send({ error: error.message });
         }
 
     }
@@ -42,9 +43,11 @@ export default class CompetitionController {
 
             res.status(200).send({ message })
 
-        } catch (error) {
-
+        } catch (error: any) {
+            res.status(error.statusCode || 400).send({ error: error.message });
         }
     }
+
+  
 
 }

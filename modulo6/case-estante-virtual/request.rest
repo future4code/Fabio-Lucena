@@ -55,3 +55,23 @@ Content-Type: application/json
     "athlete": "Anna Schevshenko",
     "time": "10.58"
 }
+
+### Inserir um atleta e seu tempo numa competição de lançamewnto de dardos
+@id = 8ce43825-6a23-495f-bba6-db2ae187cb6e
+POST http://localhost:3000/javelinThrow/{{id}}
+Content-Type: application/json
+
+{
+    "athlete": "Anna Schevshenko",
+    "distance": "45.64"
+}
+
+### Inserir mais um atleta e seu tempo numa competição de lançamewnto de dardos
+@id = 8ce43825-6a23-495f-bba6-db2ae187cb6e
+POST http://localhost:3000/javelinThrow/{{id}}
+Content-Type: application/json
+
+{
+    "athlete": "Evelyn Mathew",
+    "distance": "44.64"
+}

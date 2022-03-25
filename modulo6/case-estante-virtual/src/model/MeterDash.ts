@@ -29,7 +29,7 @@ export default class MeterDash extends Modalitys{
         return this.competition_id
     }
 
-    static toMetreDashModel(competition: any): MeterDash {
+    static toMeterDashModel(competition: any): MeterDash {
         return new MeterDash(competition.id, competition.athlete, competition.time, competition.competition_id);
       }
 }

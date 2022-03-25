@@ -1,5 +1,6 @@
 import { CustomError } from "../error/CustomError";
 import Competition, { CompetitionDTO } from "../model/Competition";
+import { JavelinDTO } from "../model/Javelin";
 import MeterDash from "../model/MeterDash";
 import MetreDash, { meterDashDTO } from "../model/MeterDash";
 import { IdGenerator } from "../services/IdGenerator";
@@ -48,7 +49,7 @@ export default class CompetitionBusiness {
             }
            
             const active = await this.competitionDatabase.verifyCompetitionActive(input.competition_id)
-            console.log(active)
+            
             if (!active || active === 0) {
                 throw new CustomError(400, "A competição já foi encerrada")
             }
@@ -62,7 +63,7 @@ export default class CompetitionBusiness {
                 competition_id: input.competition_id
             }
 
-            const newDash = MeterDash.toMetreDashModel(dashInput)
+            const newDash = MeterDash.toMeterDashModel(dashInput)
 
             await this.competitionDatabase.insertMeterDash(newDash)
 
@@ -74,5 +75,39 @@ export default class CompetitionBusiness {
             throw new CustomError(error.statusCode, error.message)
         }
     }
+
+    // insertJavelinThrow = async (input: JavelinDTO) => {
+    //     try {
+    //         if (!input.athlete || !input.distance || !input.competition_id) {
+    //             throw new CustomError(422, "Missin input")
+    //         }
+           
+    //         const active = await this.competitionDatabase.verifyCompetitionActive(input.competition_id)
+            
+    //         if (!active || active === 0) {
+    //             throw new CustomError(400, "A competição já foi encerrada")
+    //         }
+
+    //         const id: string = this.idGenerator.generate()
+
+    //         const dashInput = {
+    //             id: id,
+    //             athlete: input.athlete,
+    //             distance: input.distance,
+    //             competition_id: input.competition_id
+    //         }
+
+    //         const newDash = MeterDash.toMetreDashModel(dashInput)
+
+    //         await this.competitionDatabase.insertMeterDash(newDash)
+
+    //         const message = "Atleta e tempo adicionados com sucesso!"
+
+    //         return message
+
+    //     } catch (error: any) {
+    //         throw new CustomError(error.statusCode, error.message)
+    //     }
+    // }
 
 }
