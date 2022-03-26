@@ -76,8 +76,39 @@ export default class CompetitionDatabase extends BaseDatabase implements Competi
             SELECT athlete, time, competition_id FROM Case1_Competitions RIGHT JOIN Case1_Dash ON Case1_Competitions.id = Case1_Dash.competition_id
             ORDER BY time;
             `)
-                
-            return result[0].filter((a:any)=>{return a.competition_id === id}).map((a:any)=>a)
+
+            return result[0].filter((a: any) => { return a.competition_id === id }).map((a: any) => a)
+
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message);
+        }
+    }
+
+    javelinRanking = async (id: string): Promise<any> => {
+        try {
+
+            const result = await this.getConnection().raw(`
+            SELECT athlete, throw, competition_id FROM Case1_Competitions JOIN Case1_Javelin ON Case1_Competitions.id = Case1_Javelin.competition_id
+            ORDER BY throw DESC;
+            `)
+
+
+            let result2: any[] = []
+
+            result[0].forEach((item: any) => {
+                var duplicated = result2.findIndex(redItem => {
+                    return item.athlete == redItem.athlete;
+                }) > -1;
+
+                if (!duplicated) {
+                    result2.push(item);
+                }
+            })
+
+            console.log(result2);
+            return result2
+
+
 
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message);

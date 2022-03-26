@@ -28,7 +28,7 @@ export default class JavelinBusiness {
 
             const numberOfAttempts = await this.javelinDatabase.verifyThrows(input.competition_id, input.athlete)
 
-            if(numberOfAttempts.length === 3){
+            if(numberOfAttempts.length > 2){
                 throw new CustomError(400, "Este atleta já realizou suas 3 tentativas!")
             }
 

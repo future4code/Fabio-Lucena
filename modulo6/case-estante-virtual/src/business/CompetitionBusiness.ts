@@ -42,21 +42,21 @@ export default class CompetitionBusiness {
         }
     }
 
-    endCompetition = async(id: string) =>{
+    endCompetition = async (id: string) => {
         try {
-            if(!id){
+            if (!id) {
                 throw new CustomError(422, "Missin input")
             }
 
             const verifyId = await this.competitionDatabase.verifyCompetitionById(id)
 
-            if(!verifyId){
+            if (!verifyId) {
                 throw new CustomError(400, "Competition not found")
             }
 
             await this.competitionDatabase.endCompetition(id)
 
-           
+
 
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message)
@@ -65,18 +65,21 @@ export default class CompetitionBusiness {
 
     competitionRanking = async (id: string) => {
         try {
-            if(!id){
+            if (!id) {
                 throw new CustomError(422, "Missin input")
             }
 
             const modality = await this.competitionDatabase.verifyCompetitionById(id)
             console.log(modality)
-            if(modality.modality === "100M RASOS"){
+            if (modality.modality === "100M RASOS") {
                 const ranking = await this.competitionDatabase.meterDashRanking(id)
                 return ranking
-            }
 
-            
+            } else if (modality.modality === "LANÇAMENTO DE DARDOS") {
+                const ranking = await this.competitionDatabase.javelinRanking(id)
+                console.log(ranking)
+                return ranking
+            }
 
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message)

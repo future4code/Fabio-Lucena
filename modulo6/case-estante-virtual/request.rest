@@ -65,7 +65,7 @@ Content-Type: application/json
     "time": "10.61"
 }
 ### Inserir um atleta e seu tempo numa competição de 100m rasos
-@id = de0e37c0-a3ed-4a79-b50f-969094843f36
+# @id = de0e37c0-a3ed-4a79-b50f-969094843f36
 POST http://localhost:3000/meterDash/{{id}}
 Content-Type: application/json
 
@@ -85,13 +85,23 @@ Content-Type: application/json
 }
 
 ### Inserir mais um atleta e seu resultado numa competição de lançamewnto de dardos
-# @id = 8ce43825-6a23-495f-bba6-db2ae187cb6e
+@id = 8ce43825-6a23-495f-bba6-db2ae187cb6e
 POST http://localhost:3000/javelinThrow/{{id}}
 Content-Type: application/json
 
 {
     "athlete": "Evelyn Mathew",
-    "distance": "44.64"
+    "distance": "45.645"
+}
+
+### Inserir mais um atleta e seu resultado numa competição de lançamewnto de dardos
+@id = 8ce43825-6a23-495f-bba6-db2ae187cb6e
+POST http://localhost:3000/javelinThrow/{{id}}
+Content-Type: application/json
+
+{
+    "athlete": "Thelma Rush",
+    "distance": "44.218"
 }
 
 ### Encerra competição
@@ -103,5 +113,9 @@ Content-Type: application/json
 }
 
 ### Ranking de 100m Rasos
-@id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
+# @id = f41a78e7-1c9a-4d62-9053-b8b2b4bd1910
+get http://localhost:3000/competition/rankings/{{id}}
+
+### Ranking de lançamento de dardos
+@id = 8ce43825-6a23-495f-bba6-db2ae187cb6e
 get http://localhost:3000/competition/rankings/{{id}}
