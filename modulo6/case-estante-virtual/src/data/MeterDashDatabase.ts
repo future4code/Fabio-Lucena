@@ -2,14 +2,14 @@ import MeterDashRepository from "../business/MeterDash/MeterDashRepository";
 import MeterDash from "../model/MeterDash";
 import { BaseDatabase } from "./BaseDatabase";
 
-export default class MeterDashDatabase extends BaseDatabase implements MeterDashRepository{
+export default class MeterDashDatabase extends BaseDatabase implements MeterDashRepository {
     public verifyCompetitionActive = async (id: string): Promise<any> => {
         try {
-            
+
             const result = await this.getConnection()
-            .select("*")
-            .from("Case1_Competitions")
-            .where({id})
+                .select("*")
+                .from("Case1_Competitions")
+                .where({ id })
 
             return Number(result[0].status)
 

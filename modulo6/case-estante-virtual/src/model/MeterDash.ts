@@ -1,7 +1,6 @@
-import Competition, { Modality } from "./Competition"
 import Modalitys from "./Modalitys"
 
-export default class MeterDash extends Modalitys{
+export default class MeterDash extends Modalitys {
     private time: number
 
     constructor(
@@ -9,11 +8,11 @@ export default class MeterDash extends Modalitys{
         athlete: string,
         time: number,
         competition_id: string
-        ) {
+    ) {
         super(id, athlete, competition_id)
         this.time = time
     }
-    getId(){
+    getId() {
         return this.id
     }
 
@@ -25,13 +24,13 @@ export default class MeterDash extends Modalitys{
         return this.time
     }
 
-    getCompetition_id(){
+    getCompetition_id() {
         return this.competition_id
     }
 
     static toMeterDashModel(competition: any): MeterDash {
         return new MeterDash(competition.id, competition.athlete, competition.time, competition.competition_id);
-      }
+    }
 }
 
 export type meterDashDTO = {

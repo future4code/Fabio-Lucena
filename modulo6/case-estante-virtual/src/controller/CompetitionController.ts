@@ -2,10 +2,7 @@ import { Request, Response } from "express";
 import CompetitionBusiness from "../business/CompetitionBusiness";
 import CompetitionDatabase from "../data/CompetitionDatabase";
 import { CompetitionDTO } from "../model/Competition";
-import { JavelinDTO } from "../model/Javelin";
-import { meterDashDTO } from "../model/MeterDash";
 
-// const competitionBusiness = new (CompetitionBusiness)
 
 export default class CompetitionController {
     private competitionBusiness: CompetitionBusiness
@@ -17,7 +14,7 @@ export default class CompetitionController {
     createComptetition = async (req: Request, res: Response) => {
         const input: CompetitionDTO = {
             name: req.body.name,
-            modality: req.body.modality
+            modality: req.body.modality.toUpperCase()
         }
         try {
 
@@ -48,7 +45,7 @@ export default class CompetitionController {
 
             res.status(200).send({ ranking })
         } catch (error) {
-            
+
         }
     }
 

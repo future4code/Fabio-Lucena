@@ -19,16 +19,16 @@ export default class JavelinBusiness {
             if (!input.athlete || !input.distance || !input.competition_id) {
                 throw new CustomError(422, "Missin input")
             }
-           
+
             const active = await this.javelinDatabase.verifyCompetitionActive(input.competition_id)
-            
+
             if (!active || active === 0) {
                 throw new CustomError(400, "A competição já foi encerrada")
             }
 
             const numberOfAttempts = await this.javelinDatabase.verifyThrows(input.competition_id, input.athlete)
 
-            if(numberOfAttempts.length > 2){
+            if (numberOfAttempts.length > 2) {
                 throw new CustomError(400, "Este atleta já realizou suas 3 tentativas!")
             }
 

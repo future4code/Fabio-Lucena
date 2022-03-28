@@ -1,9 +1,9 @@
 import { v4 } from "uuid";
 
-export class IdGenerator{
+export class IdGenerator {
 
-    generate(): string{
-        
+    generate(): string {
+
         return v4();
     }
 }

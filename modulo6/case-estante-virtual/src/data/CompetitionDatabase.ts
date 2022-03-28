@@ -1,6 +1,5 @@
 import CompetitionRepository from "../business/CompetitionRepository";
 import Competition from "../model/Competition";
-import MeterDash from "../model/MeterDash";
 import { BaseDatabase } from "./BaseDatabase";
 
 export default class CompetitionDatabase extends BaseDatabase implements CompetitionRepository {
@@ -104,11 +103,7 @@ export default class CompetitionDatabase extends BaseDatabase implements Competi
                     result2.push(item);
                 }
             })
-
-            console.log(result2);
             return result2
-
-
 
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message);

@@ -3,7 +3,7 @@ import MeterDash, { meterDashDTO } from "../../model/MeterDash"
 import { IdGenerator } from "../../services/IdGenerator"
 import MeterDashRepository from "./MeterDashRepository"
 
-export default class MeterDashBusiness{
+export default class MeterDashBusiness {
     private meterDashDatabase: MeterDashRepository
     private idGenerator: IdGenerator
 
@@ -13,15 +13,15 @@ export default class MeterDashBusiness{
         this.meterDashDatabase = meterDashImplementation
         this.idGenerator = new IdGenerator()
     }
-    
+
     insertMeterDash = async (input: meterDashDTO) => {
         try {
             if (!input.athlete || !input.time || !input.competition_id) {
                 throw new CustomError(422, "Missin input")
             }
-           
+
             const active = await this.meterDashDatabase.verifyCompetitionActive(input.competition_id)
-            console.log(active)
+
             if (!active || active === 0) {
                 throw new CustomError(400, "A competição já foi encerrada")
             }

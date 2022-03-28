@@ -3,7 +3,7 @@ import JavelinBusiness from "../business/JavelinThrow/JavelinBusiness"
 import JavelinDatabase from "../data/JavelinDatabase"
 import { JavelinDTO } from "../model/Javelin"
 
-export default class JavelinController{
+export default class JavelinController {
     private javelinBusiness: JavelinBusiness
 
     constructor() {

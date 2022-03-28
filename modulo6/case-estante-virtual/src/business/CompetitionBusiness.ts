@@ -1,8 +1,5 @@
 import { CustomError } from "../error/CustomError";
-import Competition, { CompetitionDTO } from "../model/Competition";
-import { JavelinDTO } from "../model/Javelin";
-import MeterDash from "../model/MeterDash";
-import MetreDash, { meterDashDTO } from "../model/MeterDash";
+import Competition, { CompetitionDTO, Modality } from "../model/Competition";
 import { IdGenerator } from "../services/IdGenerator";
 import CompetitionRepository from "./CompetitionRepository";
 
@@ -22,6 +19,8 @@ export default class CompetitionBusiness {
             if (!input.name || !input.modality) {
                 throw new CustomError(422, "Missin input")
             }
+
+            Competition.stringToModality(input.modality)
 
             const id: string = this.idGenerator.generate()
 
@@ -70,14 +69,13 @@ export default class CompetitionBusiness {
             }
 
             const modality = await this.competitionDatabase.verifyCompetitionById(id)
-            console.log(modality)
+
             if (modality.modality === "100M RASOS") {
                 const ranking = await this.competitionDatabase.meterDashRanking(id)
                 return ranking
 
             } else if (modality.modality === "LANÇAMENTO DE DARDOS") {
                 const ranking = await this.competitionDatabase.javelinRanking(id)
-                console.log(ranking)
                 return ranking
             }
 

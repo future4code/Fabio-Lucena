@@ -14,8 +14,8 @@ export default class Competition {
     ) {
         this.id = id
         this.name = name,
-        this.modality = modality,
-        this.status = status
+            this.modality = modality,
+            this.status = status
     }
 
     getId() {
@@ -31,20 +31,20 @@ export default class Competition {
         return this.status
     }
 
-    static stringToModality(input: string): Modality{
+    static stringToModality(input: string): Modality {
         switch (input) {
             case "100M RASOS":
-              return Modality.RASOS;
+                return Modality.RASOS;
             case "LANÇAMENTO DE DARDOS":
-              return Modality.DARDO;
+                return Modality.DARDO;
             default:
-              throw new CustomError(422, "Invalid modality");
-          }
+                throw new CustomError(422, "Invalid modality");
+        }
     }
 
     static toCompetitionModel(competition: any): Competition {
         return new Competition(competition.id, competition.name, competition.modality, competition.status);
-      }
+    }
 }
 
 

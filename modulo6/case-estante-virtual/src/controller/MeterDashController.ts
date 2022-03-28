@@ -3,7 +3,7 @@ import MeterDashBusiness from "../business/MeterDash/meterDashBusiness"
 import MeterDashDatabase from "../data/MeterDashDatabase"
 import { meterDashDTO } from "../model/MeterDash"
 
-export default class MeterDashController{
+export default class MeterDashController {
     private meterDashBusiness: MeterDashBusiness
 
     constructor() {
@@ -16,13 +16,13 @@ export default class MeterDashController{
             time: req.body.time,
             competition_id: req.params.id
         }
-    
+
         try {
-    
+
             const message = await this.meterDashBusiness.insertMeterDash(input)
-    
+
             res.status(200).send({ message })
-    
+
         } catch (error: any) {
             res.status(error.statusCode || 400).send({ error: error.message });
         }

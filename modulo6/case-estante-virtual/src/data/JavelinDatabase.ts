@@ -2,15 +2,15 @@ import JavelinRepository from "../business/JavelinThrow/JavelinRepository";
 import Javelin from "../model/Javelin";
 import { BaseDatabase } from "./BaseDatabase";
 
-export default class JavelinDatabase extends BaseDatabase implements JavelinRepository{
-   
+export default class JavelinDatabase extends BaseDatabase implements JavelinRepository {
+
     public verifyCompetitionActive = async (id: string): Promise<any> => {
         try {
-            
+
             const result = await this.getConnection()
-            .select("*")
-            .from("Case1_Competitions")
-            .where({id})
+                .select("*")
+                .from("Case1_Competitions")
+                .where({ id })
 
             return result[0].status
 
@@ -39,15 +39,15 @@ export default class JavelinDatabase extends BaseDatabase implements JavelinRepo
 
     public verifyThrows = async (id: string, athlete: string): Promise<any> => {
         try {
-            
-            const result = await this.getConnection()
-            .select("*")
-            .from("Case1_Javelin")
-            .where({athlete})
 
-            const attempts = result.filter((item: any)=>{
+            const result = await this.getConnection()
+                .select("*")
+                .from("Case1_Javelin")
+                .where({ athlete })
+
+            const attempts = result.filter((item: any) => {
                 return item.competition_id === id
-            }).map((a: any)=> a)
+            }).map((a: any) => a)
 
             return attempts
 

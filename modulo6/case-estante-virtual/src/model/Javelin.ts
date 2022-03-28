@@ -1,6 +1,6 @@
 import Modalitys from "./Modalitys"
 
-export default class Javelin extends Modalitys{
+export default class Javelin extends Modalitys {
     private distance: number
 
     constructor(
@@ -8,11 +8,11 @@ export default class Javelin extends Modalitys{
         athlete: string,
         distance: number,
         competition_id: string
-        ) {
+    ) {
         super(id, athlete, competition_id)
         this.distance = distance
     }
-    getId(){
+    getId() {
         return this.id
     }
 
@@ -24,13 +24,13 @@ export default class Javelin extends Modalitys{
         return this.distance
     }
 
-    getCompetition_id(){
+    getCompetition_id() {
         return this.competition_id
     }
 
     static toJavelinModel(competition: any): Javelin {
         return new Javelin(competition.id, competition.athlete, competition.distance, competition.competition_id);
-      }
+    }
 }
 
 export type JavelinDTO = {
