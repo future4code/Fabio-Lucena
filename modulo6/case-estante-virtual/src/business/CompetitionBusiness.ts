@@ -77,6 +77,8 @@ export default class CompetitionBusiness {
             } else if (modality.modality === "LANÇAMENTO DE DARDOS") {
                 const ranking = await this.competitionDatabase.javelinRanking(id)
                 return ranking
+            }else{
+                throw new CustomError(400, "Competition not found")
             }
 
         } catch (error: any) {

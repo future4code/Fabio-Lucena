@@ -53,7 +53,7 @@ export default class CompetitionDatabase extends BaseDatabase implements Competi
         }
     }
 
-    endCompetition = async (id: string): Promise<void> => {
+    public endCompetition = async (id: string): Promise<void> => {
         try {
 
             await this.getConnection()
@@ -68,7 +68,7 @@ export default class CompetitionDatabase extends BaseDatabase implements Competi
         }
     }
 
-    meterDashRanking = async (id: string): Promise<any> => {
+    public meterDashRanking = async (id: string): Promise<any> => {
         try {
 
             const result = await this.getConnection().raw(`
@@ -83,7 +83,7 @@ export default class CompetitionDatabase extends BaseDatabase implements Competi
         }
     }
 
-    javelinRanking = async (id: string): Promise<any> => {
+    public javelinRanking = async (id: string): Promise<any> => {
         try {
 
             const result = await this.getConnection().raw(`
