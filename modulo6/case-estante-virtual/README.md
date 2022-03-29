@@ -114,3 +114,9 @@ Caso o id esteja correto a resposta deverá ser a seguinte:
 
 Sendo o resultado mostrado acima identificado da seguinte maneira, onde o primeiro objeto é o atleta vencedor, o segundo atleta esta no segundo objeto na sequência do vetor e assim por diante.
 ![vencedor](https://user-images.githubusercontent.com/91218096/160326532-6debcff9-a7d3-4c37-8077-4f1df851b16e.jpg)
+
+## Criar as Tabelas no mySQL
+Para isso basta executar o script "migrations" da seguinte forma através do terminal:
+
+![script migrations](https://user-images.githubusercontent.com/91218096/160712116-e81e342c-c21d-44db-9932-f7759232b3ee.png)
+

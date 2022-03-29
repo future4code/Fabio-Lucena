@@ -6,7 +6,8 @@
   "scripts": {
     "test": "clear && echo \"Running tests...\" && jest",
     "dev": "ts-node-dev ./src/index.ts",
-    "start": "tsc && node ./build/index.js"
+    "start": "tsc && node ./build/index.js",
+    "migrations": "tsc && node ./build/migrations.js"
   },
   "keywords": [],
   "author": "Fabio-Lucena",
