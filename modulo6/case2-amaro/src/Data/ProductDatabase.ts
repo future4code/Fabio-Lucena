@@ -56,15 +56,13 @@ export default class ProductDatabase extends BaseDatabase implements ProductRepo
         try {
 
             const result = await this.getConnection().raw(`
-            SELECT id, name, tags FROM Case2_Products JOIN Case2_Tags ON Case2_Products.id = Case2_Tags.product_id
-            WHERE id = "${id}";
+                SELECT id, name, tags FROM Case2_Products JOIN Case2_Tags ON Case2_Products.id = Case2_Tags.product_id
+                WHERE id = "${id}";
             `)
 
-            console.log(result[0][0].id)
-            console.log(result[0][0].name)
             let tags: string[] = []
 
-            for(let i = 0; i <= result[0].length - 1 ; i++){
+            for (let i = 0; i <= result[0].length - 1; i++) {
                 tags.push(result[0][i].tags)
             }
 
@@ -80,5 +78,40 @@ export default class ProductDatabase extends BaseDatabase implements ProductRepo
         }
     }
 
+    public verifyProductsByName = async (name: string): Promise<any> => {
+        try {
+            // console.log("cheguei no database")
+            const result = await this.getConnection().raw(`
+                SELECT id, name, tags FROM Case2_Products JOIN Case2_Tags ON Case2_Products.id = Case2_Tags.product_id
+                WHERE name LIKE "%${name}%" ORDER BY id;
+            `)
+            
+            let result3: any[] = []
+            // let productId: string = ""
+            let lastId: string = result[0][0].id
+            // console.log(result[0])
+            
+            for(const id of result[0]){
+                if(id.id !== lastId){
+                    let product = await this.verifyProductById(lastId)
+                    console.log("id", id)
+                    result3.push(product)
+                    
+                    lastId = id.id
+                }
+            }
+            result3.push(await this.verifyProductById(lastId))
 
+            
+
+          
+            let tags: string[] = []
+
+        
+
+            return result3
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message);
+        }
+    }
 }

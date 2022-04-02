@@ -51,15 +51,27 @@ export default class ProductBusiness {
     getProduct = async (input: getProductDTO): Promise<any> => {
         try {
             if (!input.name && !input.tags && !input.id) {
-                throw new CustomError(422, "Missing input") 
+                throw new CustomError(422, "Missing input")
             }
             if (!input.name && !input.tags && !!input.id) {
                 const result = await this.productDatabase.verifyProductById(input.id)
-                console.log(result[0])
+                
+                return result
+            }
+
+            if (!!input.name && !input.id && !input.tags) {
+                const result = await this.productDatabase.verifyProductsByName(input.name)
+                
+                return result
+            }
+
+            if (!!input.tags && !input.id && !input.name) {
+                const result = await this.productDatabase.verifyProductById(input.id)
+                
                 return result
             }
         } catch (error: any) {
-
+            throw new CustomError(error.statusCode, error.message)
         }
     }
 }

@@ -7,6 +7,15 @@ Content-Type: application/json
     "tags": ["informática", "processador", "amd"]
 }
 
+### Criar um produto2
+POST http://localhost:3000/product/insert
+Content-Type: application/json
+
+{
+    "name": "Ryzen 3",
+    "tags": ["informática", "processador", "amd", "entrada", "custo x benefício"]
+}
+
 ### Consultar produto por id
 @id = 15f7cd6c-ae67-45c0-b79c-1ac5921f94be
 GET http://localhost:3000/product/search
@@ -14,4 +23,13 @@ Content-Type: application/json
 
 {
     "id": "15f7cd6c-ae67-45c0-b79c-1ac5921f94be"
+}
+
+### Consultar produto por nome
+@id = 15f7cd6c-ae67-45c0-b79c-1ac5921f94be
+GET http://localhost:3000/product/search
+Content-Type: application/json
+
+{
+    "name": "ryzen"
 }

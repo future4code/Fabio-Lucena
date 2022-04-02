@@ -5,4 +5,5 @@ export default interface ProductRepository{
     insertTags (input: Product, tag: string): Promise<Product>
     verifyProductByName (name: string): Promise<any>
     verifyProductById (id: string): Promise<any>
+    verifyProductsByName (id: string): Promise<any>
 }
