@@ -6,3 +6,4 @@ export const productRouter = express.Router()
 const productController = new ProductController()
 
 productRouter.post("/insert", productController.insertProduct)
+productRouter.get("/search", productController.getProduct)
