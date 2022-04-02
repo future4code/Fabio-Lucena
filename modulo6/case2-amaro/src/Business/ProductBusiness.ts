@@ -53,21 +53,28 @@ export default class ProductBusiness {
             if (!input.name && !input.tags && !input.id) {
                 throw new CustomError(422, "Missing input")
             }
+
             if (!input.name && !input.tags && !!input.id) {
-                const result = await this.productDatabase.verifyProductById(input.id)
-                
+                const result = await this.productDatabase.getProductById(input.id)
+                if(!result){
+                    throw new CustomError(400, "Product not found")
+                }
                 return result
             }
 
             if (!!input.name && !input.id && !input.tags) {
-                const result = await this.productDatabase.verifyProductsByName(input.name)
-                
+                const result = await this.productDatabase.getProductsByName(input.name)
+                if(!result){
+                    throw new CustomError(400, "Product not found")
+                }
                 return result
             }
 
             if (!!input.tags && !input.id && !input.name) {
-                const result = await this.productDatabase.verifyProductById(input.id)
-                
+                const result = await this.productDatabase.getProductsByTags(input.tags)
+                if(!result){
+                    throw new CustomError(400, "Product not found")
+                }
                 return result
             }
         } catch (error: any) {

@@ -1,4 +1,5 @@
 import ProductRepository from "../Business/ProductRepository";
+import { CustomError } from "../error/CustomError";
 import Product from "../Model/Product";
 import { BaseDatabase } from "./BaseDatabase";
 
@@ -52,13 +53,17 @@ export default class ProductDatabase extends BaseDatabase implements ProductRepo
         }
     }
 
-    public verifyProductById = async (id: string): Promise<any> => {
+    public getProductById = async (id: string): Promise<any> => {
         try {
 
             const result = await this.getConnection().raw(`
                 SELECT id, name, tags FROM Case2_Products JOIN Case2_Tags ON Case2_Products.id = Case2_Tags.product_id
                 WHERE id = "${id}";
             `)
+
+            if(result[0].length === 0){
+                throw new CustomError(400, "Product not found")
+            }
 
             let tags: string[] = []
 
@@ -78,38 +83,62 @@ export default class ProductDatabase extends BaseDatabase implements ProductRepo
         }
     }
 
-    public verifyProductsByName = async (name: string): Promise<any> => {
+    public getProductsByName = async (name: string): Promise<any> => {
         try {
-            // console.log("cheguei no database")
+           
             const result = await this.getConnection().raw(`
                 SELECT id, name, tags FROM Case2_Products JOIN Case2_Tags ON Case2_Products.id = Case2_Tags.product_id
                 WHERE name LIKE "%${name}%" ORDER BY id;
             `)
-            
+            console.log(result)
+
+            if(result[0].length === 0){
+                throw new CustomError(400, "Product not found")
+            }
+
             let result3: any[] = []
-            // let productId: string = ""
+            
             let lastId: string = result[0][0].id
-            // console.log(result[0])
             
             for(const id of result[0]){
                 if(id.id !== lastId){
-                    let product = await this.verifyProductById(lastId)
+                    let product = await this.getProductById(lastId)
                     console.log("id", id)
                     result3.push(product)
                     
                     lastId = id.id
                 }
             }
-            result3.push(await this.verifyProductById(lastId))
-
-            
-
-          
-            let tags: string[] = []
-
-        
+            result3.push(await this.getProductById(lastId))
 
             return result3
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message);
+        }
+    }
+
+    public getProductsByTags= async (tags: string): Promise<any> => {
+        try {
+           
+            const result = await this.getConnection().raw(`
+                SELECT id, name, tags FROM Case2_Products JOIN Case2_Tags ON Case2_Products.id = Case2_Tags.product_id
+                WHERE tags LIKE "%${tags}%" ORDER BY id;
+            `)
+            console.log(result[0])
+
+            if(result[0].length === 0){
+                throw new CustomError(400, "Product not found")
+            }
+
+            let result2: any[] = []
+            
+            
+            for(const product of result[0]){
+                result2.push(await this.getProductById(product.id))
+            }
+            
+
+            return result2
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message);
         }

@@ -32,5 +32,5 @@ export type productDTO = {
 export type getProductDTO = {
     id: string,
     name: string,
-    tags: string[]
+    tags: string
 }
