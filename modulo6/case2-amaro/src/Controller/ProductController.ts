@@ -6,7 +6,7 @@ import { getProductDTO, productDTO } from "../Model/Product";
 export default class ProductController {
     private productBusiness: ProductBusiness
 
-    constructor(){
+    constructor() {
         this.productBusiness = new ProductBusiness(new ProductDatabase())
     }
 
@@ -15,6 +15,7 @@ export default class ProductController {
             name: req.body.name,
             tags: req.body.tags
         }
+
         try {
             const message = await this.productBusiness.insertProduct(input)
 

@@ -56,7 +56,7 @@ export default class ProductBusiness {
 
             if (!input.name && !input.tags && !!input.id) {
                 const result = await this.productDatabase.getProductById(input.id)
-                if(!result){
+                if (!result) {
                     throw new CustomError(400, "Product not found")
                 }
                 return result
@@ -64,7 +64,7 @@ export default class ProductBusiness {
 
             if (!!input.name && !input.id && !input.tags) {
                 const result = await this.productDatabase.getProductsByName(input.name)
-                if(!result){
+                if (!result) {
                     throw new CustomError(400, "Product not found")
                 }
                 return result
@@ -72,7 +72,7 @@ export default class ProductBusiness {
 
             if (!!input.tags && !input.id && !input.name) {
                 const result = await this.productDatabase.getProductsByTags(input.tags)
-                if(!result){
+                if (!result) {
                     throw new CustomError(400, "Product not found")
                 }
                 return result

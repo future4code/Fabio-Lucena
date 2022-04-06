@@ -61,7 +61,7 @@ export default class ProductDatabase extends BaseDatabase implements ProductRepo
                 WHERE id = "${id}";
             `)
 
-            if(result[0].length === 0){
+            if (result[0].length === 0) {
                 throw new CustomError(400, "Product not found")
             }
 
@@ -85,27 +85,26 @@ export default class ProductDatabase extends BaseDatabase implements ProductRepo
 
     public getProductsByName = async (name: string): Promise<any> => {
         try {
-           
+
             const result = await this.getConnection().raw(`
                 SELECT id, name, tags FROM Case2_Products JOIN Case2_Tags ON Case2_Products.id = Case2_Tags.product_id
                 WHERE name LIKE "%${name}%" ORDER BY id;
             `)
-            console.log(result)
 
-            if(result[0].length === 0){
+            if (result[0].length === 0) {
                 throw new CustomError(400, "Product not found")
             }
 
             let result3: any[] = []
-            
+
             let lastId: string = result[0][0].id
-            
-            for(const id of result[0]){
-                if(id.id !== lastId){
+
+            for (const id of result[0]) {
+                if (id.id !== lastId) {
                     let product = await this.getProductById(lastId)
-                    console.log("id", id)
+
                     result3.push(product)
-                    
+
                     lastId = id.id
                 }
             }
@@ -117,26 +116,25 @@ export default class ProductDatabase extends BaseDatabase implements ProductRepo
         }
     }
 
-    public getProductsByTags= async (tags: string): Promise<any> => {
+    public getProductsByTags = async (tags: string): Promise<any> => {
         try {
-           
+
             const result = await this.getConnection().raw(`
                 SELECT id, name, tags FROM Case2_Products JOIN Case2_Tags ON Case2_Products.id = Case2_Tags.product_id
                 WHERE tags LIKE "%${tags}%" ORDER BY id;
             `)
-            console.log(result[0])
 
-            if(result[0].length === 0){
+            if (result[0].length === 0) {
                 throw new CustomError(400, "Product not found")
             }
 
             let result2: any[] = []
-            
-            
-            for(const product of result[0]){
+
+
+            for (const product of result[0]) {
                 result2.push(await this.getProductById(product.id))
             }
-            
+
 
             return result2
         } catch (error: any) {
