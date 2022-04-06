@@ -12,6 +12,9 @@ Este projeto tem como objetivo a criação de uma API para cadastro e consulta d
 ### Requisitos Obrigatórios
 - Ter uma cobertura de teste relativamente boa, a maior que você conseguir.
 
+## Documentação da API no Postman:
+https://documenter.getpostman.com/view/18384389/UVyuTbRo
+
 ## A API e seu pleno funcionamento serão descritos a seguir:
 
 ### Criando as tabelas no mySQL
