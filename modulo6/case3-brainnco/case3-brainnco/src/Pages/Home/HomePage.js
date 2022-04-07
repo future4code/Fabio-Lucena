@@ -25,6 +25,7 @@ export default function HomePage() {
     useEffect(() => {
         if (sidebar === LotoFacil) {
             setName("LOTOFACIL")
+            setId("2200")
         } else if (sidebar === MegaSena) {
             setName("MEGA-SENA")
             setId("2359")
@@ -33,10 +34,13 @@ export default function HomePage() {
             setId("5534")
         } else if (sidebar === LotoMania) {
             setName("LOTOMANIA")
+            setId("2167")
         } else if (sidebar === TimeMania) {
             setName("TIMEMANIA")
+            setId("1622")
         } else if (sidebar === DiaDeSorte) {
             setName("DIA DE SORTE")
+            setId("440")
         }
     }, [sidebar])
 
@@ -58,18 +62,22 @@ export default function HomePage() {
         return (`${id} - ${result}`)
     }
 
-    // const resultados = ()=>{
-    //     return (
-    //         <Results>
-    //             {data.numeros.map((item)=>{
-    //                 return (
-    //                     <Elipse elipse = {Ellipse}>{item}</Elipse> 
-    //                 )
-    //             })}
-    //         </Results>
+    const resultados = ()=>{
+        return (
+            <Results>
+                {!!data.numeros > 0? data.numeros.map((item)=>{
+                    return (
+                        
+                        <Elipse 
+                        elipse = {Ellipse} 
+                        >{item}</Elipse>
+                        
+                    )
+                }) : "carregando"}
+            </Results>
             
-    //     )
-    // }
+        )
+    }
 
     return (<ContainerPrincipal>
         <Sidebar
@@ -88,14 +96,8 @@ export default function HomePage() {
             <Trevo2 src={Path3} />
             <ConcInfo>CONCURSO</ConcInfo> 
             <Info>{concurso()}</Info>
-            {/* {resultados()} */}
-            <Results>
-                {data.numeros.map((item)=>{
-                    return (
-                        <Elipse elipse={Ellipse}>{item}</Elipse> 
-                    )
-                })}
-            </Results>
+            {resultados()}
+           
 
         </Sidebar>
 

@@ -48,6 +48,9 @@ bottom: 47.47%;
 export const Elipse = styled.div`
 width: 111.2px;
 height: 107.26px;
+display: flex;
+justify-content: center;
+align-items: center;
 background: url(${props => props.elipse});
 `
 
@@ -99,11 +102,14 @@ color: #FFFFFF;
 `
 export const Results = styled.div`
 display: flex;
+flex-wrap: wrap;
 flex-direction: row;
+justify-content: space-between;
+align-items: flex-start;
 height: 400px;
 width: 1000px;
 position: absolute;
 left: 39.97%;
 top: 45.18%;
-background: #FFFFFF;
+/* background: #FFFFFF; */
 `
