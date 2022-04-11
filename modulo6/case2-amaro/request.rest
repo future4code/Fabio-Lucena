@@ -1,0 +1,53 @@
+### Criar um produto
+POST http://localhost:3000/product/insert
+Content-Type: application/json
+
+{
+    "name": "Ryzen 5",
+    "tags": ["informática", "processador", "amd"]
+}
+
+### Criar um produto2
+POST http://localhost:3000/product/insert
+Content-Type: application/json
+
+{
+    "name": "Ryzen 3",
+    "tags": ["informática", "processador", "amd", "entrada", "custo x benefício"]
+}
+
+### Criar um produto3
+POST http://localhost:3000/product/insert
+Content-Type: application/json
+
+{
+    "name": "Ryzen 7",
+    "tags": ["informática", "processador", "amd", "High-End"]
+}
+
+### Consultar produto por id
+
+GET http://localhost:3000/product/search
+Content-Type: application/json
+
+{
+    "id": "15f7cd6c-ae67-45c0-b79c-1ac5921f94be"
+}
+
+### Consultar produto por nome
+
+GET http://localhost:3000/product/search
+Content-Type: application/json
+
+{
+    "name": "amoeba"
+}
+
+### Consultar produto por tag
+
+GET http://localhost:3000/product/search
+Content-Type: application/json
+
+{
+    "tags": "amd"
+}
