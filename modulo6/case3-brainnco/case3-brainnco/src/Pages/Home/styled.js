@@ -1,6 +1,4 @@
 import styled from "styled-components"
-import { screen } from "@testing-library/react";
-import { fundo } from "./HomePage";
 
 export const ContainerPrincipal = styled.div`
 
@@ -60,7 +58,7 @@ export const Loteria = styled.p`
 }
 
 `
-// 
+
 
 export const Trevo1 = styled.img`
     position: absolute;
@@ -74,7 +72,6 @@ export const Trevo1 = styled.img`
 @media (min-device-width: 370px) and (max-device-width: 999px) {
     height: 67px;
     width: 65px;
-    /* position: relative;     */
      position: absolute;
     left: 40%;
     top: 41%; 
@@ -93,7 +90,6 @@ export const Trevo2 = styled.img`
 @media (min-device-width: 370px) and (max-device-width: 999px) {
     height: 67px;
     width: 65px;
-    /* position: relative; */
     position: absolute;
     left: 40%;
     top: 41%; 
@@ -133,7 +129,6 @@ export const Select = styled.select`
     left: 1%;
     top: 41%;
     bottom: 87.38%;
-    /* position: relative; */
     width: 240px;
     height: 51px;
     font-size: 15px;

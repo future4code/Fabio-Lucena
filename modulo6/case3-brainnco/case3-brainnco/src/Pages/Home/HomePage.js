@@ -6,8 +6,6 @@ import Quina from "../../img/Quina.svg"
 import LotoMania from "../../img/LotoMania.svg"
 import TimeMania from "../../img/TimeMania.svg"
 import DiaDeSorte from "../../img/DiaDeSorte.svg"
-import MegaSena2 from "../../img/MegaSena2.svg"
-import SideBar from "../../img/Sidebar.png"
 import Path2 from "../../img/Path-2.svg"
 import Path3 from "../../img/Path-3.svg"
 import Ellipse from "../../img/Ellipse1.svg"
@@ -23,7 +21,6 @@ export default function HomePage() {
     const [name, setName] = useState("MEGA-SENA")
     const [id, setId] = useState(2359)
     const [data, getData] = useRequestData([], `https://brainn-api-loterias.herokuapp.com/api/v1/concursos/${id}`)
-    console.log(data)
 
     useEffect(() => {
         if (sidebar === LotoFacil) {
