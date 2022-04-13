@@ -1,8 +1,11 @@
+import GlobalState from './components/Global/GlobalState';
 import Home from './Pages/Home';
 
 function App() {
   return (
-    <Home />
+    <GlobalState>
+      <Home />
+    </GlobalState>
   );
 }
 

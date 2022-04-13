@@ -16,3 +16,6 @@ Content-Type: application/json
     "lastName": "Labenu",
     "participation": 55
 }
+
+### Pegar todos os participantes
+GET http://localhost:3003/participant/all

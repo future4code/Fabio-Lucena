@@ -1,34 +1,62 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import GlobalStateContext from "../Global/GlobalStateContext";
+import ChartGraphic from "../graphic/ChartGraphic";
+import { useRequestData } from "../Hooks/useRequest";
 import { TableChart, Td, Th } from "./styled";
 
-const Table = () =>{
-    return(
+const Table = () => {
+    
+    const { states, setters, requests } = useContext(GlobalStateContext)
+
+    const participant = states.data
+
+    
+
+    useEffect(()=>{
+        requests.getData()
+        
+    },[])
+
+    const sum = (data) =>{
+        let cont = 0
+        for(const sum of data){
+            cont += sum.participation
+        }
+        // console.log(cont)
+        // setData3(cont)
+        return cont
+    } 
+
+    const cont = sum(states.data)
+    console.log(cont)
+    
+    // sum(states.data)
+    return (
+        <>
         <TableChart>
+
             <tr>
                 <th></th>
-                <Th>First Name</Th>
-                <Th>Last Name</Th>
-                <Th>Participation</Th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Participation</th>
             </tr>
-            <tr>
-                <Td>1</Td>
-                <Td><p>First Name</p></Td>
-                <Td>Last Name</Td>
-                <Td>Participation</Td>
-            </tr>    
-            <tr>
-                <Td>1</Td>
-                <Td><p>First Name</p></Td>
-                <Td>Last Name</Td>
-                <Td>Participation</Td>
-            </tr>    
-            <tr>
-                <Td>1</Td>
-                <Td><p>First Name</p></Td>
-                <Td>Last Name</Td>
-                <Td>Participation</Td>
-            </tr>    
+            {!!participant ? states.data.map((item) => {
+                let index = states.data.indexOf(item) + 1
+                let sum = ((item.participation*100)/cont)
+                return <tr key={item.id}>
+                    <td>{index}</td>
+                    <td>{item.firstName}</td>
+                    <td>{item.lastName}</td>
+                    <td>{`${Number(sum.toFixed(1))}%`}</td>
+                </tr>
+
+            }) : "carregando..."}
+
         </TableChart>
+
+        <ChartGraphic data={participant}/>
+        </>
     )
 }
 

@@ -14,6 +14,21 @@ export default class ParticipantBusiness{
         this.idGenerator = new IdGenerator()
     }
 
+    getParticipation = async()=>{
+        try{
+            const result = await this.participantDatabase.getParticipation()
+
+            if(!result){
+                throw new CustomError(400, "Não há participantes");
+                
+            }
+
+            return result
+        }catch(error: any){
+            throw new CustomError(error.statusCode, error.message)
+        }
+    }
+
     insertParticipant= async(input: participantDTO): Promise<any> =>{
         try {
             if(!input.firstName || !input.lastName || !input.participation){
