@@ -1,0 +1,18 @@
+### Inserir participante
+POST http://localhost:3000/participant/add
+Content-Type: application/json
+
+{
+    "firstName": "Fabio",
+    "lastName": "Oliveira",
+    "participation": 45
+}
+### Inserir outro participante
+POST http://localhost:3000/participant/add
+Content-Type: application/json
+
+{
+    "firstName": "Astrodev",
+    "lastName": "Labenu",
+    "participation": 55
+}
