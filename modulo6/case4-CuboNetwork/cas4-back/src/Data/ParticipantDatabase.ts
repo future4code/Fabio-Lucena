@@ -18,7 +18,7 @@ export default class ParticipantDatabase extends BaseDatabase implements Partici
         }
     }
 
-    verifyByName = async (name: string, lastName: string): Promise<void> => {
+    verifyByName = async (name: string, lastName: string): Promise<any> => {
         try {
             const result = await this.getConnection().raw(`
             SELECT * FROM Case4_Participant WHERE firstName = "${name}" AND lastName = "${lastName}";
