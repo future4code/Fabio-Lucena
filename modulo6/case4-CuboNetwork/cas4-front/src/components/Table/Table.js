@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import GlobalStateContext from "../Global/GlobalStateContext";
 import ChartGraphic from "../graphic/ChartGraphic";
-import { useRequestData } from "../Hooks/useRequest";
+import { UseRequestData2 } from "../Hooks/useRequest";
 import { TableChart, Td, Th } from "./styled";
 
 const Table = () => {
@@ -9,8 +9,6 @@ const Table = () => {
     const { states, setters, requests } = useContext(GlobalStateContext)
 
     const participant = states.data
-
-    
 
     useEffect(()=>{
         requests.getData()
@@ -28,9 +26,13 @@ const Table = () => {
     } 
 
     const cont = sum(states.data)
-    console.log(cont)
     
-    // sum(states.data)
+    const deleteParticipant = (id)=>{
+        UseRequestData2([], id)
+        setters.setData2(!states.data2)
+        console.log("deletei")
+    }
+    
     return (
         <>
         <TableChart>
@@ -49,6 +51,7 @@ const Table = () => {
                     <td>{item.firstName}</td>
                     <td>{item.lastName}</td>
                     <td>{`${Number(sum.toFixed(1))}%`}</td>
+                    <Td onClick={()=> deleteParticipant(item.id)}>X</Td>
                 </tr>
 
             }) : "carregando..."}

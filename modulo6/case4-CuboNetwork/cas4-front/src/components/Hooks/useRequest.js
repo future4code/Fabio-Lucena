@@ -1,27 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 
 
-export const UseRequestData = (initialState, body) => {
-    // const [data, setData] = useState(initialState);
-
-    
-        
-        axios
-            .post("http://localhost:3003/participant/add", body,
-            {
-                headers: {
-                    contentType: "application/json"
-                }
-            })
+export const UseRequestData2 = (initialState, id)=>{
+    axios
+            .delete(`http://localhost:3003/participant/del/${id}`)
             .then((response) => {
-                console.log("deu boa!")
+                console.log("deletou")
             })
             .catch((error) => {
                 console.log(error);
             });
-   
-
-    
-    // return [data, AddData];
 }
+

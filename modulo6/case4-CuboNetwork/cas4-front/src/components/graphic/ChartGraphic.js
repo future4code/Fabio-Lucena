@@ -25,7 +25,7 @@ const ChartGraphic = (props) => {
   ]
 
   participant.forEach(element => {
-    labels.push([`${element.firstName + "" + element.lastName}`, element.participation])
+    labels.push([`${element.firstName} ${element.lastName}`, element.participation])
   })
 
 

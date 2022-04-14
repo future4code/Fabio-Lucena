@@ -8,14 +8,18 @@ Content-Type: application/json
     "participation": 45
 }
 ### Inserir outro participante
-POST http://localhost:3000/participant/add
+POST http://localhost:3003/participant/add
 Content-Type: application/json
 
 {
-    "firstName": "Astrodev",
-    "lastName": "Labenu",
-    "participation": 55
+    "firstName": "Astrodev6",
+    "lastName": "Labenu6",
+    "participation": 5
 }
 
 ### Pegar todos os participantes
 GET http://localhost:3003/participant/all
+
+### deletar participantes
+@id = a9a4f7c0-8342-47ff-ae38-714a670538da
+delete http://localhost:3003/participant/del/{{id}}

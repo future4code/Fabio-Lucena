@@ -16,4 +16,9 @@ export const TableChart = styled.table`
         text-align: left;
     }
 `
-
+export const Td = styled.td`
+    color: red;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+`

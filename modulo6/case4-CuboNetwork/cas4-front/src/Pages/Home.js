@@ -7,7 +7,7 @@ import axios from "axios";
 import { useRequestData } from "../components/Hooks/useRequest";
 
 const Home = () => {
-    
+
 
     return (
         <ContainerPrincipal>
@@ -20,7 +20,6 @@ const Home = () => {
             <Container>
 
                 <Table />
-                {/* <ChartGraphic /> */}
 
             </Container>
 

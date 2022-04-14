@@ -1,25 +1,46 @@
+import axios from "axios";
 import React, { useContext } from "react";
 import GlobalStateContext from "../Global/GlobalStateContext";
 import useForm from "../Hooks/UseForm";
-import { UseRequestData } from "../Hooks/useRequest";
-import { HeaderPrincipal } from "./styled";
+// import UseRequest, { UseRequestData } from "../Hooks/useRequest";
+import { Button, Form, HeaderPrincipal, Input } from "./styled";
 
 const Header = () => {
     const { states, setters, requests } = useContext(GlobalStateContext)
     const [form, handleInputChange, clear] = useForm({ firstName: "", lastName: "", participation: "" })
 
+    const UseRequestData = (body) => {
+
+        axios
+            .post("http://localhost:3003/participant/add", body,
+            {
+                headers: {
+                    contentType: "application/json"
+                }
+            })
+            .then((response) => {
+                setters.setData2(!states.data2)
+                console.log("deu boa!")
+        
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+   
+}
+
     const sendForm = (event) => {
         event.preventDefault();
-        // Login(form, history);
-        UseRequestData([], form)
+        UseRequestData(form)
+        // setters.setData2(!states.data2)
         clear()
-        setters.setData2(!states.data2)
     };
 
+    console.log(states.data2)
     return (
         <HeaderPrincipal>
-            <form onSubmit={sendForm}>
-                <input
+            <Form onSubmit={sendForm}>
+                <Input
                     placeholder="First Name"
                     type={"text"}
                     name={"firstName"}
@@ -28,7 +49,7 @@ const Header = () => {
                     required
                 />
 
-                <input
+                <Input
                     placeholder="Last Name"
                     type={"text"}
                     name={"lastName"}
@@ -37,7 +58,7 @@ const Header = () => {
                     required
                 />
 
-                <input
+                <Input
                     placeholder="Participation"
                     type={Number}
                     name={"participation"}
@@ -46,8 +67,8 @@ const Header = () => {
                     required
                 />
 
-                <button type="submit" >Enviar</button>
-            </form>
+                <Button type="submit" >Enviar</Button>
+            </Form>
 
         </HeaderPrincipal>
     )
