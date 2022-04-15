@@ -12,7 +12,7 @@ const Header = () => {
     const UseRequestData = (body) => {
 
         axios
-            .post("http://localhost:3003/participant/add", body,
+            .post("https://case4-cubo.herokuapp.com/participant/add", body,
             {
                 headers: {
                     contentType: "application/json"

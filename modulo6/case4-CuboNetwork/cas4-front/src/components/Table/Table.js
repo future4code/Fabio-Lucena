@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useContext, useEffect } from "react";
 import GlobalStateContext from "../Global/GlobalStateContext";
 import ChartGraphic from "../graphic/ChartGraphic";
@@ -20,17 +21,23 @@ const Table = () => {
         for(const sum of data){
             cont += sum.participation
         }
-        // console.log(cont)
-        // setData3(cont)
         return cont
     } 
 
     const cont = sum(states.data)
     
     const deleteParticipant = (id)=>{
-        UseRequestData2([], id)
-        setters.setData2(!states.data2)
-        console.log("deletei")
+        
+        axios
+            .delete(`https://case4-cubo.herokuapp.com/participant/del/${id}`)
+            .then((response) => {
+                setters.setData2(!states.data2)
+                console.log("deletou")
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        
     }
     
     return (

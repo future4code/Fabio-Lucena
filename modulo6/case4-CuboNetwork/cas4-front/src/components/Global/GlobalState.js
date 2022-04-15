@@ -11,7 +11,7 @@ const GlobalState = (props) => {
     const getData = () => {
 
         axios
-            .get("http://localhost:3003/participant/all")
+            .get("https://case4-cubo.herokuapp.com/participant/all")
             .then((response) => {
                 setData(response.data.participantes);
             })
