@@ -10,7 +10,7 @@ export default class ParticipantDatabase extends BaseDatabase implements Partici
                 .select("*")
                 .from("Case4_Participant")
                 .orderBy("participation", "desc")
-                
+
 
             return result
         } catch (error: any) {
